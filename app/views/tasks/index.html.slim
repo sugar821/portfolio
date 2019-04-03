@@ -7,6 +7,8 @@ table
       th Start time
       th Finish time
       th Complete
+      th task_id
+      th user_id
       th
       th
       th
@@ -18,6 +20,8 @@ table
         td = task.start_time
         td = task.finish_time
         td = task.complete
+        td = task.id
+        td = task.user&.id
         td = link_to 'Show', task
         td = link_to 'Edit', edit_task_path(task)
         td = link_to 'Destroy', task, data: { confirm: 'Are you sure?' }, method: :delete

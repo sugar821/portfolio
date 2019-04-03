@@ -1,17 +1,27 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Mytask</title>
+    <title>Myapp</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-    
+
   <body>
-    <%=render "shared/header" %>
-    <div class="container">
-      <%= yield %>
-    </div>
+   <%= render "shared/header" %>
+
+   <div class="container">
+     <div class="row">
+       <div class="col-md-12">
+         <%= render "shared/flash" %>
+       </div>
+     </div>
+     <div class="row">
+         <div class="user_box mx-auto px-5 pt-3">
+            <%= yield %>
+         </div>
+     </div>
+   </div>
   </body>
 </html>
