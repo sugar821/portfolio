@@ -1,0 +1,18 @@
+p#notice = notice
+
+p
+  strong Title:
+  = @task.title
+p
+  strong Start time:
+  = @task.start_time
+p
+  strong Finish time:
+  = @task.finish_time
+p
+  strong Complete:
+  = @task.complete
+
+=> link_to 'Edit', edit_task_path(@task)
+'|
+=< link_to 'Back', tasks_path
