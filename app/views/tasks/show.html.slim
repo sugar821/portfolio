@@ -14,7 +14,7 @@ p
   = @task.complete
 p
   strong how long(min):
-  = (@task.finish_time - @task.start_time)/60.to_i
+  = ((@task.finish_time - @task.start_time)/60).to_i
 
 => link_to 'Edit', edit_task_path(@task)
 '|
