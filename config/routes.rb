@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "tasks/test_index","tasks#test_index"
   devise_for :users
   resources :tasks
   resources :users

@@ -8,6 +8,12 @@ class TasksController < ApplicationController
     # @tasks = Task.all
     @tasks = current_user.tasks
   end
+  
+  #test用、そのうち消す
+  def test_index
+    #未達成一覧　成功
+    @tasks=current_user.tasks.where(complete:false)
+  end
 
   # GET /tasks/1
   # GET /tasks/1.json
