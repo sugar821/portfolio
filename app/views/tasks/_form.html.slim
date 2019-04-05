@@ -19,4 +19,7 @@
     = f.label :complete
     </br>
     = f.check_box :complete
+  .field
+    =f.label :category_id
+    =f.collection_select :category_id, Category.all, :id, :name , { include_blank: t(".include_blank") },  { class: "form-control" }
   .actions = f.submit nil , class: "form-control btn btn-primary"

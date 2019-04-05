@@ -1,5 +1,6 @@
 class Task < ApplicationRecord
     belongs_to :user
+    belongs_to :category
     validates :title, presence: true
     validates :start_time, presence: true
     validates :finish_time, presence: true

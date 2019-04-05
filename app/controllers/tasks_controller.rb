@@ -5,14 +5,20 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
+    @q = current_user.tasks.ransack(params[:q])
+    @tasks = @q.result(distinct: true)
     # @tasks = Task.all
-    @tasks = current_user.tasks
+    # @tasks = current_user.tasks
   end
   
-  #test用、そのうち消す
+  #test用
   def test_index
-    #未達成一覧　成功
-    @tasks=current_user.tasks.where(complete:false)
+    @q = current_user.tasks.ransack(params[:q])
+    @tasks = @q.result(distinct: true)
+    
+    # @tasks=current_user.tasks
+    # #未達成一覧　成功
+     @not_completed_tasks=current_user.tasks.where(complete:false)
   end
 
   # GET /tasks/1
@@ -81,6 +87,6 @@ class TasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.require(:task).permit(:title, :start_time, :finish_time, :complete)
+      params.require(:task).permit(:title, :start_time, :finish_time, :complete, :category_id)
     end
 end

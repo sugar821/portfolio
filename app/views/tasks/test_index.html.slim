@@ -1,8 +1,20 @@
 h1 テスト用TASK
 
 div
-  p 未達成項目は #{@tasks.count} 件です。
+  p 現在、#{DateTime.current}です。
+  - if @not_completed_tasks.count > 1 
+    p 未達成項目は #{@not_completed_tasks.count} 件です。
+  - if @not_completed_tasks.count == 0
+    p good boy! 
 
+  =search_form_for @q, url: tasks_test_index_path, class: "mb-5" do |f|
+   .form-group.row
+    =f.label :title_cont, "たいとる", class: "col-sm-2 col-from-label"
+    .col-sm-10
+     =f.search_field :title_cont, class: "form-control"
+   .form-group
+    =f.submit class: "btn btn-outline-primary"
+    
   table class="table table-hover table-striped table-responsive col-md-8 alert-danger"
     thead
       tr
@@ -19,8 +31,8 @@ div
       - @tasks.each do |task|
         tr
           td = task.title
-          td = task.start_time
-          td = task.finish_time
+          td = task.start_time.strftime("%H:%M")
+          td = task.finish_time.strftime("%H:%M")
           td = task.complete
           td = task.id
           td = task.user&.id
@@ -28,6 +40,6 @@ div
           td = link_to 'Edit', edit_task_path(task)
           td = link_to 'Destroy', task, data: { confirm: 'Are you sure?' }, method: :delete
   hr
-  div.alert-success
+  div
     = week_calendar do |date| 
       = date
