@@ -1,0 +1,22 @@
+= form_for @task do |f|
+  - if @task.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@task.errors.count, "error")} prohibited this task from being saved:"
+      ul
+        - @task.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :title
+    = f.text_field :title, class: "form-control"
+  .field
+    = f.label :start_time
+    = f.datetime_field :start_time, value: DateTime.current.strftime('%Y-%m-%dT%H:%M') , class: "form-control"
+  .field
+    = f.label :finish_time
+    = f.datetime_field :finish_time, value: DateTime.current.strftime('%Y-%m-%dT%H:%M') , class: "form-control"
+  .field
+    = f.label :complete
+    </br>
+    = f.check_box :complete
+  .actions = f.submit nil , class: "form-control btn btn-primary"
