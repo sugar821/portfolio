@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!
   before_action :set_task, only: [:show, :edit, :update, :destroy]
+  
 
   # GET /tasks
   # GET /tasks.json
@@ -19,6 +20,13 @@ class TasksController < ApplicationController
     # @tasks=current_user.tasks
     # #未達成一覧　成功
      @not_completed_tasks=current_user.tasks.where(complete:false)
+     
+    respond_to do |format|
+      format.html
+      format.csv do
+        send_data render_to_string, filename:"tasks-#{Time.zone.now.strftime('%Y%m%d%s')}.csv"
+      end
+    end
   end
   
   def search
@@ -93,6 +101,6 @@ class TasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.require(:task).permit(:title, :start_time, :finish_time, :complete, :category_id)
+      params.require(:task).permit(:title, :start_time, :finish_time, :complete, :category_id, :image)
     end
 end

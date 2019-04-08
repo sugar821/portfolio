@@ -38,6 +38,7 @@ div
           td = link_to 'Show', task
           td = link_to 'Edit', edit_task_path(task)
           td = link_to 'Destroy', task, data: { confirm: 'Are you sure?' }, method: :delete
+  = link_to 'export', tasks_test_index_path(format: :csv),class: "btn btn-primary"
   hr
   div
     = week_calendar do |date| 

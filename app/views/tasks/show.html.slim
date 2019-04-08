@@ -19,6 +19,10 @@ p
   strong how long:
   = ((@task.finish_time - @task.start_time)/60).to_i
   |min
+p
+  strong image:
+  |<br>
+  = image_tag @task.image if @task.image.attached?
 => link_to 'Back', tasks_path
 '|
 =< link_to 'Edit', edit_task_path(@task)
