@@ -7,32 +7,34 @@ h1 Listing tasks
    =f.search_field :title_cont, class: "form-control"
  .form-group
   =f.submit class: "btn btn-outline-primary"
-  
-table class="table table-hover table-striped table-responsive"
-  thead
-    tr
-      th Title
-      th Start time
-      th Finish time
-      th Complete
-      th task_id
-      th user_id
-      th
-      th
-      th
 
-  tbody
-    - @tasks.each do |task|
+.row  
+  table class="table table-hover table-striped table-responsive alert-danger"
+    thead.alert-success
       tr
-        td = task.title
-        td = task.start_time
-        td = task.finish_time
-        td = task.complete
-        td = task.id
-        td = task.user&.id
-        td = link_to 'Show', task
-        td = link_to 'Edit', edit_task_path(task)
-        td = link_to 'Destroy', task, data: { confirm: 'Are you sure?' }, method: :delete
+        th= sort_link(@q, :title)
+        th Start time
+        th Finish time
+        th= sort_link(@q, :complete)
+        th task_id
+        th user_id
+        th category
+        th
+        th
+        th
+    tbody
+      - @tasks.each do |task|
+        tr
+          td = task.title
+          td = task.start_time.strftime("%H:%M")
+          td = task.finish_time.strftime("%H:%M")
+          td = task.complete
+          td = task.id
+          td = task.user&.id
+          td = task.category&.name
+          td = link_to 'Show', task
+          td = link_to 'Edit', edit_task_path(task)
+          td = link_to 'Destroy', task, data: { confirm: 'Are you sure?' }, method: :delete
 
 br
 

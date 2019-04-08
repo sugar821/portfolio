@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get "tasks/test_index","tasks#test_index"
+  get "tasks/search" , "tasks#search"
   devise_for :users
   resources :tasks
   resources :users

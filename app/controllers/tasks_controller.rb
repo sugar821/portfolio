@@ -14,11 +14,17 @@ class TasksController < ApplicationController
   #test用
   def test_index
     @q = current_user.tasks.ransack(params[:q])
-    @tasks = @q.result(distinct: true)
+    @tasks = @q.result(distinct: true).page(params[:page]).per(5)
     
     # @tasks=current_user.tasks
     # #未達成一覧　成功
      @not_completed_tasks=current_user.tasks.where(complete:false)
+  end
+  
+  def search
+    @q = current_user.tasks.ransack(params[:q])
+    @category = Category.all 
+    @tasks = @q.result(distinct: true).page(params[:page])
   end
 
   # GET /tasks/1

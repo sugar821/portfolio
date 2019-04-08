@@ -8,22 +8,20 @@ div
     p good boy! 
 
   =search_form_for @q, url: tasks_test_index_path, class: "mb-5" do |f|
-   .form-group.row
-    =f.label :title_cont, "たいとる", class: "col-sm-2 col-from-label"
-    .col-sm-10
-     =f.search_field :title_cont, class: "form-control"
    .form-group
+    =f.search_field :title_cont, class: "form-control",placeholder: "たいとるをいれてね"
     =f.submit class: "btn btn-outline-primary"
     
-  table class="table table-hover table-striped table-responsive col-md-8 alert-danger"
-    thead
+  table class="table table-hover table-striped table-responsive alert-danger"
+    thead.alert-success
       tr
-        th Title
+        th= sort_link(@q, :title)
         th Start time
         th Finish time
-        th Complete
+        th= sort_link(@q, :complete)
         th task_id
         th user_id
+        th category
         th
         th
         th
@@ -36,6 +34,7 @@ div
           td = task.complete
           td = task.id
           td = task.user&.id
+          td = task.category&.name
           td = link_to 'Show', task
           td = link_to 'Edit', edit_task_path(task)
           td = link_to 'Destroy', task, data: { confirm: 'Are you sure?' }, method: :delete
@@ -43,3 +42,5 @@ div
   div
     = week_calendar do |date| 
       = date
+  div.col-12
+      = paginate @tasks      
