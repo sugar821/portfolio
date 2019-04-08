@@ -20,7 +20,7 @@ div
         th Finish time
         th= sort_link(@q, :complete)
         th task_id
-        th user_id
+        th nick_name
         th category
         th
         th
@@ -33,7 +33,7 @@ div
           td = task.finish_time.strftime("%H:%M")
           td = task.complete
           td = task.id
-          td = task.user&.id
+          td = task.user&.nick_name
           td = task.category&.name
           td = link_to 'Show', task
           td = link_to 'Edit', edit_task_path(task)
