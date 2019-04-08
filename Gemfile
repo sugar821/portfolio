@@ -46,7 +46,7 @@ gem 'slim-rails'
 #slimのジェネレータ
 
 gem 'html2slim'
-#erb->alimの変換
+#erb->slimの変換
 
 gem 'pry-rails'
 gem 'pry-doc'
@@ -64,12 +64,6 @@ gem 'binding_of_caller'
 
 gem 'simple_calendar', '~> 2.0'
 #simple calendar
-
-gem 'kaminari'
-#paginarion
-
-gem 'ransack'
-#検索用
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

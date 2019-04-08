@@ -13,10 +13,12 @@ p
   strong Complete:
   = @task.complete
 p
-  strong how long(min):
+  strong Category:
+  = @task.category&.name
+p
+  strong how long:
   = ((@task.finish_time - @task.start_time)/60).to_i
-  
-
-=> link_to 'Edit', edit_task_path(@task)
+  |min
+=> link_to 'Back', tasks_path
 '|
-=< link_to 'Back', tasks_path
+=< link_to 'Edit', edit_task_path(@task)
