@@ -8,8 +8,6 @@ class TasksController < ApplicationController
   def index
     @q = current_user.tasks.ransack(params[:q])
     @tasks = @q.result(distinct: true)
-    # @tasks = Task.all
-    # @tasks = current_user.tasks
   end
   
   #test用
@@ -19,7 +17,7 @@ class TasksController < ApplicationController
     
     # @tasks=current_user.tasks
     # #未達成一覧　成功
-     @not_completed_tasks=current_user.tasks.where(complete:false)
+    @not_completed_tasks=current_user.tasks.where(complete:false)
      
     respond_to do |format|
       format.html
@@ -29,6 +27,16 @@ class TasksController < ApplicationController
     end
   end
   
+  def admin_index
+    @q = Task.ransack(params[:q])
+    @tasks = @q.result(distinct: true).page(params[:page]).per(10)
+    # @tasks = Task.all.page(params[:page]).per(10)
+  end
+  
+  def admin_console
+    @users = User.all
+  end
+    
   def search
     @q = current_user.tasks.ransack(params[:q])
     @category = Category.all 

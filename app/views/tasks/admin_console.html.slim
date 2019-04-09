@@ -1,0 +1,21 @@
+h1 Admin console
+
+.row  
+  table class="table table-hover table-striped table-responsive alert-danger"
+    thead.alert-success
+      tr
+        th = "email"
+        th = "nick_name"
+        th = "admin"
+        th
+        th
+        th
+    tbody
+      - @users.each do |user|
+        tr
+          td = user.email
+          td = user.nick_name
+          td = user.admin
+          td = link_to 'Show', user
+          td = link_to 'Edit', edit_user_path(user)
+          td = link_to 'Destroy', user, data: { confirm: 'Are you sure?' }, method: :delete
