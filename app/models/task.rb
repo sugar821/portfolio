@@ -12,6 +12,9 @@ class Task < ApplicationRecord
         self.start_time <= finish_time
     end
     
+    def start_time
+        self.finish_time
+    end
     # def self.csv_attributes
     #     %w(title start_time finish_time complete)
     # end

@@ -12,13 +12,11 @@ h1 Listing tasks
   table class="table table-hover table-striped table-responsive alert-danger"
     thead.alert-success
       tr
-        th= sort_link(@q, :title)
-        th Start time
-        th Finish time
-        th= sort_link(@q, :complete)
-        th task_id
-        th user_id
-        th category
+        th = sort_link(@q, :title, "タイトル")
+        th = t".start_time"
+        th = t".finish_time"
+        th = sort_link(@q, :complete, "完了")
+        th = t".category"
         th
         th
         th
@@ -29,12 +27,10 @@ h1 Listing tasks
           td = task.start_time.strftime("%H:%M")
           td = task.finish_time.strftime("%H:%M")
           td = task.complete
-          td = task.id
-          td = task.user&.id
           td = task.category&.name
-          td = link_to 'Show', task
-          td = link_to 'Edit', edit_task_path(task)
-          td = link_to 'Destroy', task, data: { confirm: 'Are you sure?' }, method: :delete
+          td = link_to '詳細', task
+          td = link_to '編集', edit_task_path(task)
+          td = link_to '削除', task, data: { confirm: 'Are you sure?' }, method: :delete
 
 br
 

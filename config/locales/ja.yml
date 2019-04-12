@@ -7,6 +7,28 @@ ja:
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
+    models:
+      tasks:課題
+    attibutes:
+      tasks:
+        title: タイトル
+        start_time: 開始時刻
+        finish_time: 終了時刻
+        complete: 完了
+        category: カテゴリー
+        category_id: カテゴリー
+        img: 画像
+      edit:
+        title: タイトル
+        start_time: 開始時刻
+        finish_time: 終了時刻
+        complete: 完了
+        category: カテゴリー
+        category_id: カテゴリー
+        img: 画像
+        edit: 編集
+        return: 戻る
+      
   date:
     abbr_day_names:
     - 日
