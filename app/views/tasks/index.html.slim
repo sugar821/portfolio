@@ -1,6 +1,7 @@
 h1 Listing tasks
 
-=search_form_for @q, class: "mb-5" do |f|
+div
+=search_form_for @q, class: "mb-12" do |f|
  .form-group.row
   =f.label :title_cont, "たいとる", class: "col-sm-2 col-from-label"
   .col-sm-10
@@ -8,29 +9,7 @@ h1 Listing tasks
  .form-group
   =f.submit class: "btn btn-outline-primary"
 
-.row  
-  table class="table table-hover table-striped table-responsive alert-danger"
-    thead.alert-success
-      tr
-        th = sort_link(@q, :title, "タイトル")
-        th = t".start_time"
-        th = t".finish_time"
-        th = sort_link(@q, :complete, "完了")
-        th = t".category"
-        th
-        th
-        th
-    tbody
-      - @tasks.each do |task|
-        tr
-          td = task.title
-          td = task.start_time.strftime("%H:%M")
-          td = task.finish_time.strftime("%H:%M")
-          td = task.complete
-          td = task.category&.name
-          td = link_to '詳細', task
-          td = link_to '編集', edit_task_path(task)
-          td = link_to '削除', task, data: { confirm: 'Are you sure?' }, method: :delete
+  == render 'table'
 
 br
 

@@ -18,17 +18,16 @@ ja:
         category: カテゴリー
         category_id: カテゴリー
         img: 画像
-      edit:
-        title: タイトル
-        start_time: 開始時刻
-        finish_time: 終了時刻
-        complete: 完了
-        category: カテゴリー
-        category_id: カテゴリー
-        img: 画像
-        edit: 編集
-        return: 戻る
-      
+      user:
+        email: メールアドレス
+        nick_name: ニックネーム
+        password: パスワード
+        password_confirmation: パスワード再入力
+        current_password: 現在のパスワード
+        remember_me: ログイン情報を記録する
+    errors:
+      messages:
+        record_invalid: "バリデーションに失敗しました: %{errors}"
   date:
     abbr_day_names:
     - 日

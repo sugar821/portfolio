@@ -24,6 +24,11 @@
     height: auto;
 }
 
+.img:hover{
+    opacity: 0.5;
+    cursor: pointer;
+}
+
 .small-calendar{
     width: 50%;
 }

@@ -1,16 +1,16 @@
 require 'csv'
 
     CSV.generate do |csv|
-      column_names = %w(title start_time finish_time complete category.name)
+      column_names = %w(title hours complete nick_name created_at category)
       csv << column_names
       @tasks.each do |task|
         column_values = [
           task.title,
-          task.start_time,
-          task.finish_time,
+          task.hours,
           task.complete,
-          task.user&.id,
-          task.category&.name
+          task.user.nick_name,
+          task.created_at,
+          task.category.name
         ]
         csv << column_values
         end

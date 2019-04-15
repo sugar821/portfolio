@@ -7,7 +7,7 @@ class TasksController < ApplicationController
   # GET /tasks.json
   def index
     @q = current_user.tasks.ransack(params[:q])
-    @tasks = @q.result(distinct: true)
+    @tasks = @q.result(distinct: true).page(params[:page]).per(5)
   end
   
   #test用
@@ -21,7 +21,7 @@ class TasksController < ApplicationController
     # @calendar_tasks_count = current_user.tasks.count
     @not_completed_tasks=current_user.tasks.where(complete:false)
      
-    #CSV 
+    #CSV 文字コードUTF-8 excelに直接出すと文字化けする
     respond_to do |format|
       format.html
       format.csv do
