@@ -1,17 +1,12 @@
-.container
   p#notice = notice
   p
     strong = t ".title"
     |:
     = @task.title
   p
-    strong = t ".start_time"
+    strong = t ".hours"
     |:
-    = @task.start_time
-  p
-    strong = t ".finish_time"
-    |:
-    = @task.finish_time
+    = @task.hours  
   p
     strong = t ".complete"
     |:
@@ -20,10 +15,6 @@
     strong = t ".category"
     |:
     = @task.category&.name
-  p
-    strong 作業時間:
-    = ((@task.finish_time - @task.start_time)/60).to_i
-    |min
   p
     strong = t".image"
     |:<br>

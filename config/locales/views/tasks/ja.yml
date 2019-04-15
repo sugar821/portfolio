@@ -30,5 +30,18 @@
        show: 詳細
        edit: 編集
        destroy: 削除
+     test_index:
+       title: タイトル 
+       start_time: 開始時刻
+       finish_time: 終了時刻
+       complete: 完了
+       category: カテゴリー
+       category_id: カテゴリー
+       image: 画像
+       show: 詳細
+       edit: 編集
+       destroy: 削除
+       true: 〇
+       false: ×
      form:
        include_blank: カテゴリーを選択して下さい

@@ -13,12 +13,11 @@ div
    .form-group  
    =f.submit class: "btn btn-outline-primary"
     
-  table class="table table-hover table-striped table-responsive alert-danger"
+  table class="table table-hover mytable"
     thead.alert-success
       tr
         th = sort_link(@q, :title, "タイトル")
-        th = t".start_time"
-        th = t".finish_time"
+        th = t".hours"
         th = sort_link(@q, :complete, "完了")
         th = t".category"
         th
@@ -28,8 +27,7 @@ div
       - @tasks.each do |task|
         tr
           td = task.title
-          td = task.start_time.strftime("%H:%M")
-          td = task.finish_time.strftime("%H:%M")
+          td = task.hours
           td = task.complete
           td = task.category&.name
           td = link_to '詳細', task
@@ -37,11 +35,11 @@ div
           td = link_to '削除', task, data: { confirm: 'Are you sure?' }, method: :delete
   = link_to 'export', tasks_test_index_path(format: :csv),class: "btn btn-primary"
   hr
-  div
+  div.small-calendar
     = month_calendar events: @calendar_tasks do |date, tasks| 
       =date.strftime("%m/%d")
       |</br>
-      - tasks.each do |task| 
+      - tasks.each do |task|
         = task.title
   div.col-12
       = paginate @tasks      

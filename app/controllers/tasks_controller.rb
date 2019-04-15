@@ -21,6 +21,7 @@ class TasksController < ApplicationController
     # @calendar_tasks_count = current_user.tasks.count
     @not_completed_tasks=current_user.tasks.where(complete:false)
      
+    #CSV 
     respond_to do |format|
       format.html
       format.csv do
@@ -111,6 +112,6 @@ class TasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.require(:task).permit(:title, :start_time, :finish_time, :complete, :category_id, :image)
+      params.require(:task).permit(:title, :hours, :complete, :category_id, :image)
     end
 end
