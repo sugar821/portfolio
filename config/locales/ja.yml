@@ -18,7 +18,7 @@ ja:
         category: カテゴリー
         category_id: カテゴリー
         img: 画像
-      user:
+      users:
         email: メールアドレス
         nick_name: ニックネーム
         password: パスワード

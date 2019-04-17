@@ -65,8 +65,8 @@ gem 'binding_of_caller'
 gem 'simple_calendar', '~> 2.0'
 #simple calendar
 
-gem 'mini_magick'
-#画像操作用 失敗
+gem "font-awesome-sass"
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

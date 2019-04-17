@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!,except: [:top]
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   
 
@@ -43,7 +43,7 @@ class TasksController < ApplicationController
   def search
     @q = current_user.tasks.ransack(params[:q])
     @category = Category.all 
-    @tasks = @q.result(distinct: true).page(params[:page])
+    @tasks = @q.result(distinct: true).page(params[:page]).per(5)
   end
 
   # GET /tasks/1

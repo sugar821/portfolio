@@ -19,5 +19,6 @@ div.col-12
           td = link_to '詳細', task
           td = link_to '編集', edit_task_path(task)
           td = link_to '削除', task, data: { confirm: 'Are you sure?' }, method: :delete
-  div.col-12
-  = paginate @tasks  
+  div.col-12.my-3
+    = paginate @tasks
+    

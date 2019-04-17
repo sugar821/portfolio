@@ -1,8 +1,7 @@
-h1 top
+div
+h1.title top
 
-login user id is
-= current_user.id
-br
-= current_user.email
-br
-= current_user.nick_name
+div
+-if user_signed_in?
+    |welcome 
+    = current_user&.nick_name

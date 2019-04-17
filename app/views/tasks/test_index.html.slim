@@ -1,23 +1,23 @@
-h1 テスト用TASK
-
-div
+h1.title 未達成一覧
+div.row
   p 現在、#{DateTime.current}です。
   - if @not_completed_tasks.count > 1 
     p 未達成項目は #{@not_completed_tasks.count} 件です。
   - if @not_completed_tasks.count == 0
     p good boy! 
-
-  =search_form_for @q, url: tasks_test_index_path, class: "mb-5" do |f|
-   .form-group
-   =f.search_field :title_cont, class: "form-control",placeholder: "たいとるをいれてね"
-   .form-group  
-   =f.submit class: "btn btn-outline-primary"
+div.row
+  div.col-lg-8  
+    =search_form_for @q, url: tasks_test_index_path, class: "mb-5" do |f|
+     .form-group
+     =f.search_field :title_cont, class: "form-control",placeholder: "たいとるをいれてね"
+     .form-group  
+     =f.submit class: "btn btn-outline-primary"
+      
+    == render 'table'
     
-  == render 'table'
-  
-  = link_to 'export', tasks_test_index_path(format: :csv),class: "btn btn-primary"
-  hr
-  div.small-calendar
+    = link_to 'export', tasks_test_index_path(format: :csv),class: "btn btn-outline-primary"
+    hr
+  div.small-calendar.col-lg-4
     = month_calendar events: @calendar_tasks do |date, tasks| 
       =date.strftime("%m/%d")
       |</br>

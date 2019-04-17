@@ -10,7 +10,7 @@ div.col-12
               li = message
       .field
         = f.label :title
-        = f.text_field :title, class: "form-control",placeholder: "たいとる"
+        = f.text_field :title, class: "form-control",placeholder: "たいとる", autofocus: true
       .field
         = f.label :hours
         = f.number_field :hours, min:1,max:24,class: "form-control"
@@ -25,4 +25,4 @@ div.col-12
         =f.label :image
         |<br>
         =f.file_field :image
-      .actions = f.submit nil , class: "form-control btn btn-primary mt-2"
+      .actions = f.submit nil , class: "form-control btn btn-outline-primary mt-2"
