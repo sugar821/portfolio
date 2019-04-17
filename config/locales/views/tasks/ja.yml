@@ -41,7 +41,7 @@
        show: 詳細
        edit: 編集
        destroy: 削除
-       true: 〇
-       false: ×
      form:
        include_blank: カテゴリーを選択して下さい
+
+     

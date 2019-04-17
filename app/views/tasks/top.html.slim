@@ -1,7 +1,11 @@
 div
-h1.title top
+h1.title top page
 
-div
+
 -if user_signed_in?
-    |welcome 
-    = current_user&.nick_name
+    h1 
+      |welcome 
+      = current_user&.nick_name
+
+img src="cat.jpg" alt="cat" class="img"
+

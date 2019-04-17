@@ -32,8 +32,8 @@ class TasksController < ApplicationController
   
   def admin_index
     @q = Task.ransack(params[:q])
+    @category = Category.all 
     @tasks = @q.result(distinct: true).page(params[:page]).per(10)
-    # @tasks = Task.all.page(params[:page]).per(10)
   end
   
   def admin_console

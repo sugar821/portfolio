@@ -7,7 +7,7 @@ div
      =f.search_field :title_cont, class: "form-control"
      p.field
      =f.label :category_id_eq, "カテゴリー"
-     =f.collection_select :category_id_eq,@category, :id, :name , { include_blank: t(".include_blank") },  { class: "form-control" }
+     =f.collection_select :category_id_eq,@category, :id, :name , { include_blank: "カテゴリーを選択してください" },  { class: "form-control" }
      p.field
      =f.label :complete_eq, "完了"
      |<br>
