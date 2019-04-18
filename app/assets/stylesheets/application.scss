@@ -12,8 +12,48 @@
  * = require simple_calendar
  */
 @import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
 
-
+.main-bg-color{
+    background: whitesmoke;
+}
 .wrapper{
     display: flex;
+}
+
+.title{
+    display: inline-block;
+    margin: 1rem 0;
+    background: linear-gradient(transparent 70%, #a7d6ff 70%);
+}
+
+.admin-title{
+    display: inline-block;
+    margin: 1rem 0;
+    background: linear-gradient(transparent 70%, crimson 40%);
+}
+.img{
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.img:hover{
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.mytable{
+    table-layout:fixed;
+}
+
+.admin-icon{
+    border-radius: 4px;
+    background: crimson;
+    opacity: 0.9;
+    font-weight: bold;
+    color: white !important;
+    width: 9rem;
+    text-align: center;
 }

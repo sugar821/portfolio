@@ -1,33 +1,29 @@
-h1 テスト用TASK
+h1.title タスク一覧
+div.row
+  p
+  - if @not_completed_tasks.count > 1 
+    p 未達成項目は #{@not_completed_tasks.count} 件です。
+  - if @not_completed_tasks.count == 0
+    p good boy! 
 
-div
-  p 未達成項目は #{@tasks.count} 件です。
-
-  table class="table table-hover table-striped table-responsive col-md-8 alert-danger"
-    thead
-      tr
-        th Title
-        th Start time
-        th Finish time
-        th Complete
-        th task_id
-        th user_id
-        th
-        th
-        th
-    tbody
-      - @tasks.each do |task|
-        tr
-          td = task.title
-          td = task.start_time
-          td = task.finish_time
-          td = task.complete
-          td = task.id
-          td = task.user&.id
-          td = link_to 'Show', task
-          td = link_to 'Edit', edit_task_path(task)
-          td = link_to 'Destroy', task, data: { confirm: 'Are you sure?' }, method: :delete
-  hr
-  div.alert-success
-    = week_calendar do |date| 
-      = date
+  div.col-12
+    |タイトル検索
+    =search_form_for @q, url: tasks_test_index_path, class: "mb-5" do |f|
+     .form-group
+     =f.search_field :title_cont, class: "form-control",placeholder: "たいとるをいれてね"
+     .form-group  
+     =f.submit class: "btn btn-outline-primary"
+     
+div.row
+  div.col-xl-8  
+    == render 'table'
+    = link_to 'export', tasks_test_index_path(format: :csv),class: "btn btn-outline-primary"
+    hr
+  div.col-xl-4
+    = month_calendar events: @calendar_tasks do |date, tasks| 
+      =date.strftime("%m/%d")
+      |</br>
+      - tasks.each do |task|
+        = task.title
+        |<br>
+    

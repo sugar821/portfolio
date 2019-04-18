@@ -1,22 +1,24 @@
-p#notice = notice
-
-p
-  strong Title:
-  = @task.title
-p
-  strong Start time:
-  = @task.start_time
-p
-  strong Finish time:
-  = @task.finish_time
-p
-  strong Complete:
-  = @task.complete
-p
-  strong how long(min):
-  = ((@task.finish_time - @task.start_time)/60).to_i
-  
-
-=> link_to 'Edit', edit_task_path(@task)
-'|
-=< link_to 'Back', tasks_path
+  p#notice = notice
+  p
+    strong = t ".title"
+    |:
+    = @task.title
+  p
+    strong = t ".hours"
+    |:
+    = @task.hours  
+  p
+    strong = t ".complete"
+    |:
+    = @task.complete
+  p
+    strong = t ".category"
+    |:
+    = @task.category&.name
+  p
+    strong = t".image"
+    |:<br>
+    = image_tag @task.image,class: "img" if @task.image.attached?
+  => link_to 'Back', tasks_path
+  '|
+  =< link_to 'Edit', edit_task_path(@task)

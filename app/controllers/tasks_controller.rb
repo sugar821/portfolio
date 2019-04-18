@@ -1,18 +1,46 @@
 class TasksController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!,except: [:top]
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   # GET /tasks
   # GET /tasks.json
   def index
-    # @tasks = Task.all
-    @tasks = current_user.tasks
+    @calendar_tasks = current_user.tasks
+    @q = current_user.tasks.ransack(params[:q])
+    @tasks = @q.result(distinct: true).page(params[:page]).per(5)
+    @userid = current_user.id
+    @query = Task.find_by_sql(["select category_id ,sum(hours) as hours from tasks where user_id = #{@userid} group by category_id"])
   end
   
-  #test用、そのうち消す
   def test_index
-    #未達成一覧　成功
-    @tasks=current_user.tasks.where(complete:false)
+    @calendar_tasks = current_user.tasks
+    @q = current_user.tasks.ransack(params[:q])
+    @tasks = @q.result(distinct: true).page(params[:page]).per(5)
+    @not_completed_tasks=current_user.tasks.where(complete:false)
+     
+    #CSV 文字コードUTF-8 excelに直接出すと文字化けする
+    respond_to do |format|
+      format.html
+      format.csv do
+        send_data render_to_string, filename:"tasks-#{Time.zone.now.strftime('%Y%m%d%s')}.csv"
+      end
+    end
+  end
+  
+  def admin_index
+    @q = Task.ransack(params[:q])
+    @category = Category.all 
+    @tasks = @q.result(distinct: true).order(id: "DESC").page(params[:page]).per(10)
+  end
+  
+  def admin_console
+    @users = User.all
+  end
+    
+  def search
+    @q = current_user.tasks.ransack(params[:q])
+    @category = Category.all 
+    @tasks = @q.result(distinct: true).order(id: "DESC").page(params[:page]).per(5)
   end
 
   # GET /tasks/1
@@ -23,7 +51,6 @@ class TasksController < ApplicationController
   # GET /tasks/new
   def new
     @task = Task.new
-    # @task= current_user.tasks.build
   end
 
   # GET /tasks/1/edit
@@ -35,7 +62,6 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
     @task.user_id = current_user.id
-      # @task = current_user.task.build(task_params)
     respond_to do |format|
       if @task.save
         format.html { redirect_to @task, notice: 'Task was successfully created.' }
@@ -74,13 +100,12 @@ class TasksController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_task
-      # @task = Task.find(params[:id])
       @task = current_user.tasks.find_by(id: params[:id])
       redirect_to tasks_url if @task.nil?
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.require(:task).permit(:title, :start_time, :finish_time, :complete)
+      params.require(:task).permit(:title, :hours, :complete, :category_id, :image)
     end
 end

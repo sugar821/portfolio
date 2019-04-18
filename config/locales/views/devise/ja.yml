@@ -1,0 +1,10 @@
+---
+ ja:
+   registrations:
+     new:
+       title: テスト情報
+     edit:
+   sessions:
+     new:
+       email: メールアドレス
+       password: パスワード

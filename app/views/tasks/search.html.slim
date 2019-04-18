@@ -1,0 +1,24 @@
+h1.title search
+
+div
+ =search_form_for @q, url: tasks_search_path, class: "mb-5" do |f|
+     p.field
+     =f.label :title_cont, "タイトル"
+     =f.search_field :title_cont, class: "form-control"
+     p.field
+     =f.label :category_id_eq, "カテゴリー"
+     =f.collection_select :category_id_eq,@category, :id, :name , { include_blank: "カテゴリーを選択してください" },  { class: "form-control" }
+     p.field
+     =f.label :complete_eq, "完了"
+     |<br>
+     =f.radio_button :complete_eq, "", {:checked => true}
+     |指定なし 　
+     =f.radio_button :complete_eq,"true"
+     |完了 　
+     =f.radio_button :complete_eq,"false"
+     |未完了
+     p.field    
+     =f.submit class: "btn btn-outline-primary"
+div
+ == render 'table'
+ 

@@ -1,4 +1,12 @@
-h1 top
+div
+h1.title top page
 
-login user id is
-= current_user.id
+
+-if user_signed_in?
+    h1 
+      |welcome 
+      = current_user&.nick_name
+
+img src="cat.jpg" alt="cat" class="img"
+
+
