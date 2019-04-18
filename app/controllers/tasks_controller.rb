@@ -5,10 +5,11 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    @calendar_tasks = current_user.tasks
+    # @calendar_tasks = current_user.tasks
+    @userid = current_user.id
+    @calendar_tasks = Task.find_by_sql(["select category_id ,sum(hours) as hours, created_at from tasks where user_id = #{@userid} group by created_at"])
     @q = current_user.tasks.ransack(params[:q])
     @tasks = @q.result(distinct: true).page(params[:page]).per(5)
-    @userid = current_user.id
     @query = Task.find_by_sql(["select category_id ,sum(hours) as hours from tasks where user_id = #{@userid} group by category_id"])
   end
   
