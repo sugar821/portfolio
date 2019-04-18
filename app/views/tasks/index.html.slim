@@ -1,5 +1,9 @@
 h1 Listing tasks
-
+= current_user.id
+div
+- @AAA.each do |task|
+  =task.category.name
+  =task.hours
 div
 =search_form_for @q, class: "mb-12" do |f|
  .form-group.row

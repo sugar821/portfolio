@@ -1,13 +1,14 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!,except: [:top]
   before_action :set_task, only: [:show, :edit, :update, :destroy]
-  
 
   # GET /tasks
   # GET /tasks.json
   def index
     @q = current_user.tasks.ransack(params[:q])
     @tasks = @q.result(distinct: true).page(params[:page]).per(5)
+    @userid = current_user.id
+    @AAA = Task.find_by_sql(["select category_id ,sum(hours) as hours from tasks where user_id = #{@userid} group by category_id"])
   end
   
   #test用
@@ -15,10 +16,6 @@ class TasksController < ApplicationController
     @calendar_tasks = current_user.tasks
     @q = current_user.tasks.ransack(params[:q])
     @tasks = @q.result(distinct: true).page(params[:page]).per(5)
-    
-    # @tasks=current_user.tasks
-    # #未達成一覧　成功
-    # @calendar_tasks_count = current_user.tasks.count
     @not_completed_tasks=current_user.tasks.where(complete:false)
      
     #CSV 文字コードUTF-8 excelに直接出すと文字化けする

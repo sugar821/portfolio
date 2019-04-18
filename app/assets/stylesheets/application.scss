@@ -27,6 +27,12 @@
     margin: 1rem 0;
     background: linear-gradient(transparent 70%, #a7d6ff 70%);
 }
+
+.admin-title{
+    display: inline-block;
+    margin: 1rem 0;
+    background: linear-gradient(transparent 70%, crimson 40%);
+}
 .img{
     display: block;
     max-width: 100%;
@@ -40,4 +46,13 @@
 
 .mytable{
     table-layout:fixed;
+}
+
+.admin-icon{
+    border-radius: 4px;
+    background: crimson;
+    opacity: 0.9;
+    font-weight: bold;
+    color: white !important;
+    width: 8rem;
 }
