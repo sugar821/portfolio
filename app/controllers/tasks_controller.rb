@@ -5,13 +5,13 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
+    @calendar_tasks = current_user.tasks
     @q = current_user.tasks.ransack(params[:q])
     @tasks = @q.result(distinct: true).page(params[:page]).per(5)
     @userid = current_user.id
-    @AAA = Task.find_by_sql(["select category_id ,sum(hours) as hours from tasks where user_id = #{@userid} group by category_id"])
+    @query = Task.find_by_sql(["select category_id ,sum(hours) as hours from tasks where user_id = #{@userid} group by category_id"])
   end
   
-  #test用
   def test_index
     @calendar_tasks = current_user.tasks
     @q = current_user.tasks.ransack(params[:q])
@@ -30,7 +30,7 @@ class TasksController < ApplicationController
   def admin_index
     @q = Task.ransack(params[:q])
     @category = Category.all 
-    @tasks = @q.result(distinct: true).page(params[:page]).per(10)
+    @tasks = @q.result(distinct: true).order(id: "DESC").page(params[:page]).per(10)
   end
   
   def admin_console
@@ -40,7 +40,7 @@ class TasksController < ApplicationController
   def search
     @q = current_user.tasks.ransack(params[:q])
     @category = Category.all 
-    @tasks = @q.result(distinct: true).page(params[:page]).per(5)
+    @tasks = @q.result(distinct: true).order(id: "DESC").page(params[:page]).per(5)
   end
 
   # GET /tasks/1
@@ -51,7 +51,6 @@ class TasksController < ApplicationController
   # GET /tasks/new
   def new
     @task = Task.new
-    # @task= current_user.tasks.build
   end
 
   # GET /tasks/1/edit
@@ -63,7 +62,6 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
     @task.user_id = current_user.id
-      # @task = current_user.task.build(task_params)
     respond_to do |format|
       if @task.save
         format.html { redirect_to @task, notice: 'Task was successfully created.' }
@@ -102,7 +100,6 @@ class TasksController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_task
-      # @task = Task.find(params[:id])
       @task = current_user.tasks.find_by(id: params[:id])
       redirect_to tasks_url if @task.nil?
     end
