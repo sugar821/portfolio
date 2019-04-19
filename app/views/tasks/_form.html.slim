@@ -10,8 +10,8 @@ div.col-12
         = f.label :title
         = f.text_field :title, class: "form-control",placeholder: "たいとる", autofocus: true
       .field
-        = f.label :hours
-        = f.number_field :hours, min:1,max:24,class: "form-control"
+        = f.label :minutes
+        = f.number_field :minutes, min:15,max:960,step:15,class: "form-control"
       .field
         = f.label :complete
         </br>
@@ -23,4 +23,6 @@ div.col-12
         =f.label :image
         |<br>
         =f.file_field :image
+      .field
+        =f.hidden_field :updated_day, value:Date.today
       .actions = f.submit nil , class: "form-control btn btn-outline-primary mt-2"

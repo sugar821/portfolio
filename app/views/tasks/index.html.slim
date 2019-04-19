@@ -23,12 +23,12 @@ div.row
       - @query.each do |task|
          tr
           td = task.category.name
-          td = task.hours
+          td = task.minutes.to_i/60
      hr
   div.col-xl-4
     = month_calendar events: @calendar_tasks do |date, tasks| 
       =date.strftime("%m/%d")
       |</br>
       - tasks.each do |task|
-        = task.hours
+        p.bg-primary = task.minutes.to_i/60 if task.minutes.to_i/60 > 
         |<br>

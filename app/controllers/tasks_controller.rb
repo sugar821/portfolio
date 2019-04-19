@@ -7,10 +7,10 @@ class TasksController < ApplicationController
   def index
     # @calendar_tasks = current_user.tasks
     @userid = current_user.id
-    @calendar_tasks = Task.find_by_sql(["select category_id ,sum(hours) as hours, created_at from tasks where user_id = #{@userid} group by created_at"])
+    @calendar_tasks = Task.find_by_sql(["select category_id ,sum(minutes) as minutes, created_at from tasks where user_id = #{@userid} group by updated_day"])
     @q = current_user.tasks.ransack(params[:q])
     @tasks = @q.result(distinct: true).page(params[:page]).per(5)
-    @query = Task.find_by_sql(["select category_id ,sum(hours) as hours from tasks where user_id = #{@userid} group by category_id"])
+    @query = Task.find_by_sql(["select category_id ,sum(minutes) as minutes from tasks where user_id = #{@userid} group by category_id"])
   end
   
   def test_index
@@ -107,6 +107,6 @@ class TasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.require(:task).permit(:title, :hours, :complete, :category_id, :image)
+      params.require(:task).permit(:title, :hours, :minutes, :complete, :category_id, :image, :updated_day)
     end
 end
