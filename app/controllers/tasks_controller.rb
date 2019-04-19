@@ -13,21 +13,6 @@ class TasksController < ApplicationController
     @query = Task.find_by_sql(["select category_id ,sum(minutes) as minutes from tasks where user_id = #{@userid} group by category_id"])
   end
   
-  def test_index
-    @calendar_tasks = current_user.tasks
-    @q = current_user.tasks.ransack(params[:q])
-    @tasks = @q.result(distinct: true).page(params[:page]).per(5)
-    @not_completed_tasks=current_user.tasks.where(complete:false)
-     
-    #CSV 文字コードUTF-8 excelに直接出すと文字化けする
-    respond_to do |format|
-      format.html
-      format.csv do
-        send_data render_to_string, filename:"tasks-#{Time.zone.now.strftime('%Y%m%d%s')}.csv"
-      end
-    end
-  end
-  
   def admin_index
     @q = Task.ransack(params[:q])
     @category = Category.all 
@@ -42,6 +27,14 @@ class TasksController < ApplicationController
     @q = current_user.tasks.ransack(params[:q])
     @category = Category.all 
     @tasks = @q.result(distinct: true).order(id: "DESC").page(params[:page]).per(5)
+    
+ #CSV 文字コードUTF-8 excelに直接出すと文字化けする
+    respond_to do |format|
+      format.html
+      format.csv do
+        send_data render_to_string, filename:"tasks-#{Time.zone.now.strftime('%Y%m%d%s')}.csv"
+      end
+    end
   end
 
   # GET /tasks/1
