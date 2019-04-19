@@ -7,7 +7,7 @@ class TasksController < ApplicationController
   def index
     # @calendar_tasks = current_user.tasks
     @userid = current_user.id
-    @calendar_tasks = Task.find_by_sql(["select category_id ,sum(minutes) as minutes, created_at from tasks where user_id = #{@userid} group by updated_day"])
+    @calendar_tasks = Task.find_by_sql(["select category_id ,sum(minutes) as minutes, updated_day from tasks where user_id = #{@userid} group by updated_day"])
     @q = current_user.tasks.ransack(params[:q])
     @tasks = @q.result(distinct: true).page(params[:page]).per(5)
     @query = Task.find_by_sql(["select category_id ,sum(minutes) as minutes from tasks where user_id = #{@userid} group by category_id"])

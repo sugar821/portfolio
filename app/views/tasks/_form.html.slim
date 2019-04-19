@@ -10,8 +10,11 @@ div.col-12
         = f.label :title
         = f.text_field :title, class: "form-control",placeholder: "たいとる", autofocus: true
       .field
+        = f.label :updated_day
+        = f.date_field :updated_day, value:Date.today.strftime('%Y-%m-%d') ,class: "form-control"
+      .field
         = f.label :minutes
-        = f.number_field :minutes, min:15,max:960,step:15,class: "form-control"
+        = f.number_field :minutes, min:15,max:960,step:15,class: "form-control",placeholder: "0"
       .field
         = f.label :complete
         </br>
@@ -23,6 +26,4 @@ div.col-12
         =f.label :image
         |<br>
         =f.file_field :image
-      .field
-        =f.hidden_field :updated_day, value:Date.today
       .actions = f.submit nil , class: "form-control btn btn-outline-primary mt-2"

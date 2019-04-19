@@ -30,5 +30,26 @@ div.row
       =date.strftime("%m/%d")
       |</br>
       - tasks.each do |task|
-        p.bg-primary = task.minutes.to_i/60 if task.minutes.to_i/60 > 
+        - if task.minutes.to_i/60 >= 4
+          p.test1 = task.minutes.to_i/60 if task.minutes.to_i/60 
+        - elsif task.minutes.to_i/60 >= 3
+          p.test2 = task.minutes.to_i/60 if task.minutes.to_i/60
+        - elsif task.minutes.to_i/60 >= 2
+          p.test3 = task.minutes.to_i/60 if task.minutes.to_i/60 
+        - elsif task.minutes.to_i/60 >= 1
+          p.test4 = task.minutes.to_i/60 if task.minutes.to_i/60 
+        - else
         |<br>
+    p ※一日の作業時間によって色分けされます
+    p
+        span.color4 1時間～
+        span.color3 2時間～
+        span.color2 3時間～
+        span.color1 4時間～
+javascript:
+    $(function() {
+    $('.test1').parent('td').css('background','#99FFCC');
+    $('.test2').parent('td').css('background','#CCFFCC');
+    $('.test3').parent('td').css('background','#C2EEFF');
+    $('.test4').parent('td').css('background','#BAD3FF');
+    });
