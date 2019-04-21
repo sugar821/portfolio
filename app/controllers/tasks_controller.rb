@@ -4,7 +4,7 @@ class TasksController < ApplicationController
 
   # GET /tasks
   # GET /tasks.json
-  def index
+  def summary
     # @calendar_tasks = current_user.tasks
     @userid = current_user.id
     @calendar_tasks = Task.find_by_sql(["select category_id ,sum(minutes) as minutes, updated_day from tasks where user_id = #{@userid} group by updated_day"])

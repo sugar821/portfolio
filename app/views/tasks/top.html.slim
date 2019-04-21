@@ -1,11 +1,11 @@
 div
-h1.title top page
-
+h1.title TOP
 
 -if user_signed_in?
     h1 
-      |welcome 
+      |welcome
       = current_user&.nick_name
+      = icon("fas", "cat")
 
 img src="cat.jpg" alt="cat" class="img"
 
