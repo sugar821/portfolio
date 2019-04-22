@@ -20,32 +20,33 @@
     管理者は一般ユーザのアカウント削除可能
     
 ## 使用しているGEM
-    ユーザ認証
-      devise
-    bootstrap4
-      bootstrap'
-    #bootstrap4
-    gem 'kaminari'
-    #ページネーション追加
-    gem 'ransack'
-    #検索機能追加
-    gem 'slim-rails'
-    #slimのジェネレータ
-    gem 'html2slim'
-    #erb->slimの変換
-    gem 'pry-rails'
-    gem 'pry-doc'
-    #DBを見やすく
-    gem "rspec-rails", "~>3.7"
-    #Rspecテスト用GEM
-    gem "factory_bot_rails", "~>4.11"
-    #テストデータ作成支援
-    gem 'better_errors'
-    # エラー画面をわかりやすく整形してくれる
-    gem 'binding_of_caller'
-    # better_errorsの画面上にirb/pry(PERL)を表示する  
-    gem 'simple_calendar', '~> 2.0'
-    #simple calendar
-    gem "font-awesome-sass"
-    gem 'dropzonejs-rails'
-
+    -devise
+        ユーザ認証
+    -bootstrap4
+        bootstrap4
+    -kaminari
+        ページネーション
+    -ransack
+        検索機能
+    -dropzonejs-rails
+        画像のドラッグ&ドロップ
+    -simple_calendar
+        カレンダー機能
+    -font-awesome-sass
+        font-awesome
+    -slim-rails
+        slim記法
+    -html2slim
+        erb->slimの変換
+    -pry-rails
+        rails consoleでのPry使用
+    -pry-doc
+        rails consoleでのPry使用
+    -rspec-rails
+        テスト用Rspec
+    -factory_bot_rails
+        テストデータ作成支援
+    -better_errors
+        エラー画面をわかりやすく整形
+    -binding_of_caller
+        better_errorsの画面上にirb/pry(PERL)を表示する  

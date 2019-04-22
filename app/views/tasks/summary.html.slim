@@ -1,19 +1,6 @@
-h1.title SUMMARY
-div.row.text-danger.bg-success
- div.col-12
- p
- ここにめっせーじだそうかな？
- ここにめっせーじだそうかな？
- ここにめっせーじだそうかな？
- ここにめっせーじだそうかな？
- ここにめっせーじだそうかな？
- ここにめっせーじだそうかな？
- ここにめっせーじだそうかな？
- ここにめっせーじだそうかな？
- ここにめっせーじだそうかな？
- ここにめっせーじだそうかな？
+h1.title =t".title"
 div.row
-  div.col-xl-8  
+  div.col-xl-8
    table class="table table-hover mytable"
      thead.alert-success
        tr
@@ -31,21 +18,23 @@ div.row
       |</br>
       - tasks.each do |task|
         - if task.minutes.to_i/60 >= 4
-          p.test1 = task.minutes.to_i/60 if task.minutes.to_i/60 
+          p.test1 
         - elsif task.minutes.to_i/60 >= 3
-          p.test2 = task.minutes.to_i/60 if task.minutes.to_i/60
+          p.test2
         - elsif task.minutes.to_i/60 >= 2
-          p.test3 = task.minutes.to_i/60 if task.minutes.to_i/60 
+          p.test3 
         - elsif task.minutes.to_i/60 >= 1
-          p.test4 = task.minutes.to_i/60 if task.minutes.to_i/60 
+          p.test4 
         - else
         |<br>
-    p ※一日の作業時間によって色分けされます
+    p ※一日の完了作業時間によって色分けされます
     p
         span.color4 1時間～
         span.color3 2時間～
         span.color2 3時間～
         span.color1 4時間～
+div.row.col-12
+ =render 'table'
 javascript:
     $(function() {
     $('.test1').parent('td').css('background','#99FFCC');

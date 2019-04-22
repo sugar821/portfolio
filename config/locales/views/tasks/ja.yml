@@ -2,46 +2,32 @@
  ja:
    tasks:
      new:
-       title: テスト情報
+       title: NEW TASK
+     summary:
+       title: SUMMARY
      show:
-       title: タイトル 
-       start_time: 開始時刻
-       finish_time: 終了時刻
+       title: タスク詳細
        complete: 完了
        category: カテゴリー
        category_id: カテゴリー
        image: 画像
      edit:
-       title: タイトル 
-       start_time: 開始時刻
-       finish_time: 終了時刻
+       title: タスク編集 
        complete: 完了
        category: カテゴリー
        category_id: カテゴリー
        image: 画像
-     index:
-       title: タイトル 
-       start_time: 開始時刻
-       finish_time: 終了時刻
-       complete: 完了
-       category: カテゴリー
-       category_id: カテゴリー
-       image: 画像
-       show: 詳細
-       edit: 編集
-       destroy: 削除
-     test_index:
-       title: タイトル 
-       start_time: 開始時刻
-       finish_time: 終了時刻
-       complete: 完了
-       category: カテゴリー
-       category_id: カテゴリー
-       image: 画像
-       show: 詳細
-       edit: 編集
-       destroy: 削除
+     search:
+       title: SEARCH
+     admin_index:
+       title: 全タスク管理
+     admin_console:
+       title: ユーザ管理
      form:
+       title: タイトル
+       updated_day: 作業日
+       minutes: 作業時間(分)
+       complete: 完了
+       image: 画像
+       category: カテゴリー
        include_blank: カテゴリーを選択して下さい
-
-     

@@ -5,12 +5,13 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def summary
-    # @calendar_tasks = current_user.tasks
     @userid = current_user.id
-    @calendar_tasks = Task.find_by_sql(["select category_id ,sum(minutes) as minutes, updated_day from tasks where user_id = #{@userid} group by updated_day"])
+    #日毎の集計
+    @calendar_tasks = Task.find_by_sql(["select category_id ,sum(minutes) as minutes, updated_day from tasks where user_id = #{@userid} and complete = 't' group by updated_day"])
     @q = current_user.tasks.ransack(params[:q])
-    @tasks = @q.result(distinct: true).page(params[:page]).per(5)
-    @query = Task.find_by_sql(["select category_id ,sum(minutes) as minutes from tasks where user_id = #{@userid} group by category_id"])
+    @tasks = @q.result(distinct: true).where(complete: false).page(params[:page]).per(5)
+    #各カテゴリー毎の集計
+    @query = Task.find_by_sql(["select category_id ,sum(minutes) as minutes from tasks where user_id = #{@userid} and complete = 't' group by category_id"])
   end
   
   def admin_index
@@ -58,7 +59,7 @@ class TasksController < ApplicationController
     @task.user_id = current_user.id
     respond_to do |format|
       if @task.save
-        format.html { redirect_to @task, notice: 'Task was successfully created.' }
+        format.html { redirect_to @task, notice: '登録しました' }
         format.json { render :show, status: :created, location: @task }
       else
         format.html { render :new }
@@ -72,7 +73,7 @@ class TasksController < ApplicationController
   def update
     respond_to do |format|
       if @task.update(task_params)
-        format.html { redirect_to @task, notice: 'Task was successfully updated.' }
+        format.html { redirect_to @task, notice: '更新しました' }
         format.json { render :show, status: :ok, location: @task }
       else
         format.html { render :edit }
@@ -86,7 +87,7 @@ class TasksController < ApplicationController
   def destroy
     @task.destroy
     respond_to do |format|
-      format.html { redirect_to tasks_url, notice: 'Task was successfully destroyed.' }
+      format.html { redirect_to tasks_url, notice: '削除しました.' }
       format.json { head :no_content }
     end
   end
