@@ -1,25 +1,21 @@
-h1.title =t".title"
+h1.title =t".pagetitle"
 p#notice = notice
-p
-  strong = t ".title"
-  |:
-  = @task.title
-p
-  strong = t ".minutes"
-  |:
-  = @task.minutes  
-p
-  strong = t ".complete"
-  |:
-  = @task.complete
-p
-  strong = t ".category"
-  |:
-  = @task.category&.name
-p
-  strong = t".image"
-  |:<br>
-  = image_tag @task.image,class: "img" if @task.image.attached?
-=> link_to 'Back', :back
-'|
-=< link_to 'Edit', edit_task_path(@task)
+
+div.col-12
+  table class="table table-bordered table-sm mytable"
+    tr
+        td.show-table = t ".title"
+        td = @task.title
+    tr        
+        td.show-table  = t ".minutes"
+        td = @task.minutes
+    tr        
+        td.show-table  = t ".complete"
+        td = @task.complete
+    tr        
+        td.show-table  = t ".category"
+        td = @task.category.name
+    tr        
+        td.show-table  = t ".image"
+        td = image_tag @task.image,class: "img" if @task.image.attached?  
+  

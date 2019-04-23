@@ -17,7 +17,7 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
-.main-bg-color{
+.main-container{
     background: whitesmoke;
 }
 .wrapper{
@@ -76,4 +76,11 @@
 .dropzone {
     border: 2px dashed #b4bcc2;
     width: 100%;
+}
+.show-table{
+    width: 10%;
+    text-align: right;
+}
+.small-calendar{
+    zoom: 50%;
 }

@@ -2,27 +2,25 @@
  ja:
    tasks:
      new:
-       title: NEW TASK
+       pagetitle: NEW TASK
      summary:
-       title: SUMMARY
+       pagetitle: SUMMARY
      show:
-       title: タスク詳細
+       pagetitle: タスク詳細
+       title: タイトル
+       minutes: 作業時間(分)
        complete: 完了
        category: カテゴリー
        category_id: カテゴリー
        image: 画像
      edit:
-       title: タスク編集 
-       complete: 完了
-       category: カテゴリー
-       category_id: カテゴリー
-       image: 画像
+       pagetitle: タスク編集
      search:
-       title: SEARCH
+       pagetitle: SEARCH
      admin_index:
-       title: 全タスク管理
+       pagetitle: 全タスク管理
      admin_console:
-       title: ユーザ管理
+       pagetitle: ユーザ管理
      form:
        title: タイトル
        updated_day: 作業日

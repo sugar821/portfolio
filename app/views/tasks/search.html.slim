@@ -1,4 +1,4 @@
-h1.title =t".title"
+h1.title =t".pagetitle"
 
 div
  =search_form_for @q, url: tasks_search_path, class: "mb-5" do |f|
@@ -17,7 +17,11 @@ div
      |完了 　
      =f.radio_button :complete_eq,"false"
      |未完了
-     p.field    
+     p.field
+     |日付<br>
+     = f.date_field :updated_day_gteq, value:Date.today.strftime('%Y-%m-%d')
+     |~
+     = f.date_field :updated_day_lteq, value:Date.today.strftime('%Y-%m-%d')
      =f.submit class: "btn btn-outline-primary"
 div
  == render 'table'
