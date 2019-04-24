@@ -11,11 +11,11 @@ div.col-12
         td = @task.minutes
     tr        
         td.show-table  = t ".complete"
-        td = @task.complete
+        td = @task.complete? ? "〇":"×" 
     tr        
         td.show-table  = t ".category"
         td = @task.category.name
     tr        
         td.show-table  = t ".image"
-        td = image_tag @task.image,class: "img" if @task.image.attached?  
+        td = @task.image.attached? ? (image_tag @task.image,class: "img") :(icon("fas","eye-slash"))
   

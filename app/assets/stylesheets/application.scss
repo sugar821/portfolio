@@ -30,6 +30,12 @@
     background: linear-gradient(transparent 70%, #a7d6ff 70%);
 }
 
+.subtitle{
+    display: inline-block;
+    margin: 1rem 0;
+    background: linear-gradient(transparent 70%, #98D1AF 70%);
+}
+
 .admin-title{
     display: inline-block;
     margin: 1rem 0;
@@ -61,16 +67,16 @@
 }
 
 .color1{
-    background: #99FFCC;
+    background: #047230;
 }
 .color2{
-    background: #CCFFCC;
+    background: #43B26F;
 }
 .color3{
-    background: #C2EEFF;
+    background: #98D1AF;
 }
 .color4{
-    background: #BAD3FF;
+    background: #AABFB2;
 }
 
 .dropzone {

@@ -9,7 +9,7 @@
        pagetitle: タスク詳細
        title: タイトル
        minutes: 作業時間(分)
-       complete: 完了
+       complete: 完了区分
        category: カテゴリー
        category_id: カテゴリー
        image: 画像
@@ -19,13 +19,19 @@
        pagetitle: SEARCH
      admin_index:
        pagetitle: 全タスク管理
+       minutes: 作業時間(分)
+       complete: 完了区分
+       category: カテゴリー
+       category_id: カテゴリー
+       image: 画像
+       nick_name: ユーザ名
      admin_console:
        pagetitle: ユーザ管理
      form:
        title: タイトル
        updated_day: 作業日
        minutes: 作業時間(分)
-       complete: 完了
+       complete: 完了区分
        image: 画像
        category: カテゴリー
        include_blank: カテゴリーを選択して下さい

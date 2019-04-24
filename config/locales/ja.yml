@@ -12,7 +12,7 @@ ja:
         title: タイトル
         updated_day: 作業日
         minutes: 作業時間
-        complete: 完了
+        complete: 完了区分
         category: カテゴリー
         category_id: カテゴリー
         image: 画像
@@ -23,6 +23,17 @@ ja:
         password_confirmation: パスワード再入力
         current_password: 現在のパスワード
         remember_me: ログイン情報を記録する
+  shared:
+    header:
+      newtask: New Task
+      summary: SUMMARY
+      search: SEARCH
+      edit_registration: ユーザ情報編集
+      log_out: ログアウト
+      new_registration: 新規ユーザ登録
+      log_in: ログイン
+      admin_index: 全タスク管理
+      admin_console: ユーザ管理
   date:
     abbr_day_names:
     - 日
