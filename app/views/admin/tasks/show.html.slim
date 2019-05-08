@@ -1,0 +1,21 @@
+h1.title =t".pagetitle"
+p#notice = notice
+
+div.col-12
+  table class="table table-bordered table-sm mytable"
+    tr
+        td.show-table = t ".title"
+        td = @task.title
+    tr        
+        td.show-table  = t ".minutes"
+        td = @task.minutes
+    tr        
+        td.show-table  = t ".complete"
+        td = @task.complete? ? "〇":"×" 
+    tr        
+        td.show-table  = t ".category"
+        td = @task.category.name
+    tr        
+        td.show-table  = t ".image"
+        td = @task.image.attached? ? (image_tag @task.image,class: "img") :(icon("fas","eye-slash"))
+  

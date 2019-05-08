@@ -14,15 +14,15 @@ class TasksController < ApplicationController
     @query = Task.find_by_sql(["select category_id ,sum(minutes) as minutes from tasks where user_id = #{@userid} and complete = 't' group by category_id"])
   end
   
-  def admin_index
-    @q = Task.ransack(params[:q])
-    @category = Category.all 
-    @tasks = @q.result(distinct: true).order(id: "DESC").page(params[:page]).per(10)
-  end
+  # def admin_index
+  #   @q = Task.ransack(params[:q])
+  #   @category = Category.all 
+  #   @tasks = @q.result(distinct: true).order(id: "DESC").page(params[:page]).per(10)
+  # end
   
-  def admin_console
-    @users = User.all
-  end
+  # def admin_console
+  #   @users = User.all
+  # end
     
   def search
     @q = current_user.tasks.ransack(params[:q])
