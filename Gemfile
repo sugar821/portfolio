@@ -71,9 +71,7 @@ gem 'dropzonejs-rails'
 
 gem 'pg', group: :production
 
-group :development, :test do
-  gem 'sqlite3', '~> 1.3.6'
-end
+gem 'sqlite3', '~> 1.3.6', group: :development
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
