@@ -20,9 +20,6 @@
             <li class="nav-item">
               <%= link_to t(".edit_registration"), edit_user_registration_path, class: "nav-link" %>
             </li>
-            <li class="nav-item">
-              <%= link_to t(".log_out"), destroy_user_session_path, method: :delete, class: "nav-link" %>
-            </li>
         <% else %>
              <li class="nav-item">
                <%= link_to t(".new_registration"), new_user_registration_path, class: "nav-link" %>
@@ -38,10 +35,18 @@
              <li class="nav-item">
                <%= link_to t(".admin_console"), admin_tasks_console_path, class: "nav-link" %>
              </li>
+       <% end %>
+       <% if user_signed_in? %>
+             <li class="nav-item">
+               <%= link_to t(".log_out"), destroy_user_session_path, method: :delete, class: "nav-link" %>
+             </li>
+       <% end %>
+       <% if current_user&.admin? %>
              <li class="nav-item">
                 <span class = "nav-link admin-icon">管理者ログイン中</span>
              </li>
        <% end %>
+       
        </ul>
     </div>
 </nav>
