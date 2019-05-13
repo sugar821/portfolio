@@ -69,9 +69,9 @@ gem "font-awesome-sass"
 
 gem 'dropzonejs-rails'
 
+gem 'pg', group: :production
+
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platform: :mri
   gem 'sqlite3', '~> 1.3.6'
 end
 
