@@ -68,8 +68,10 @@ gem "font-awesome-sass"
 
 gem 'dropzonejs-rails'
 
-gem 'pg', group: :production
+gem 'sqlite3', '~> 1.3.6', group: :development
 
+gem 'pg', '~> 0.18', group: :production
+gem 'rails_12factor', group: :production
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
