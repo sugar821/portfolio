@@ -7,13 +7,12 @@ div.col-12
         th = "ユーザ名"
         th = "メールアドレス"
         th = "管理者権限"
-        th
-        th
+        th = "削除"
     tbody
       - @users.each do |user|
         tr.text-center
-          td = user.nick_name
+          td = link_to user.nick_name, edit_admin_user_path(user)
           td = user.email
           td = user.admin? ? "〇":"×"
-          td = link_to 'show', edit_admin_user_path(user)
-          td = link_to 'Destroy', admin_user_path(user), data: { confirm: 'Are you sure?' }, method: :delete
+          /td = link_to 'show', edit_admin_user_path(user)
+          td = link_to link_to icon("fas", "trash-alt"), admin_user_path(user), data: { confirm: 'Are you sure?' }, method: :delete

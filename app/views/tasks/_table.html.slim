@@ -9,20 +9,20 @@ div.col-12
         th = sort_link(@q, :category_id, "カテゴリー")
         th = sort_link(@q, :created_at, "作成日")
         th = "画像"
-        th colspan=3
+        th = "編集"
+        th = "削除"
     tbody
       - @tasks.each do |task|
         tr.text-center
-          td = task.title
+          td = link_to task.title , task
           td = (task.minutes.to_i/60)
           td = (task.minutes.to_i%60)
           td = task.complete? ? "〇":"×"
           td = task.category&.name
           td = task.created_at.strftime("%Y/%m/%d")
-          td = task.image.attached? ? icon("fas", "camera"):icon("fas","eye-slash")
-          td = link_to '詳細', task
-          td = link_to '編集', edit_task_path(task)
-          td = link_to '削除', task, data: { confirm: 'Are you sure?' }, method: :delete
+          td = task.image.attached? ? icon("fas", "camera"):""
+          td = link_to icon("fas", "pen") , edit_task_path(task)
+          td = link_to icon("fas", "trash-alt"), task, data: { confirm: 'Are you sure?' }, method: :delete
   div.col-12.my-3
     = paginate @tasks
     

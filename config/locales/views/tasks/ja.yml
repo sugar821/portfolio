@@ -35,3 +35,13 @@
        image: 画像
        category: カテゴリー
        include_blank: カテゴリーを選択して下さい
+   views:
+     pagination:
+       first: "«"
+       last: "»"
+       previous: "‹"
+       next: "›"
+       truncate: "..."
+   simple_calendar:
+     previous: "«"
+     next: "»"
