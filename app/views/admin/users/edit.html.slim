@@ -2,7 +2,8 @@ h1.title =t".pagetitle"
 p#notice = notice
 
 div.col-12
-  =form_for @user do |f|
+  /form_with moedl:@user, url:admin_user_path do |f|
+  =form_for @user, url:admin_user_path  do |f|
     .field
       =f.label :nick_name
       =f.text_field :nick_name, class: "form-control", placeholder: "name"

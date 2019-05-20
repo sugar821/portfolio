@@ -6,7 +6,11 @@ class Admin::UsersController < ApplicationController
     def update
         @user = User.find_by(id: params[:id])
         @user.update!
-        redirect_to admin_tasks_console_path
+        if @user.save(user_params)
+            redirect_to admin_tasks_console_path
+        else
+            render :edit
+        end
     end
   
     def destroy

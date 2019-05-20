@@ -1,7 +1,7 @@
 h1.title =t".pagetitle"
 
 div.col-12
-  = form_with model:@task do |f|
+  = form_with model:@task, url:admin_task_path do |f|
       - if @task.errors.any?
         #error_explanation
           h2 = "#{pluralize(@task.errors.count, "error")} prohibited this task from being saved:"

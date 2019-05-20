@@ -8,17 +8,23 @@ div.col-12
               li = message
       .field
         = f.label :title
-        = f.text_field :title, class: "form-control",placeholder: "たいとる", autofocus: true
+        = f.text_field :title, class: "form-control",placeholder: "タイトルを入力して下さい", autofocus: true
       .field
         = f.label :updated_day
         = f.date_field :updated_day, value:Date.today.strftime('%Y-%m-%d') ,class: "form-control"
       .field
         = f.label :minutes
-        = f.number_field :minutes, min:30,max:1800,step:30,class: "form-control",placeholder: "0"
+        = f.number_field :minutes, min:30,max:1800,step:30,class: "form-control",placeholder: "30分単位で入力して下さい"
       .field
-        = f.label :complete
-        </br>
-        = f.check_box :complete, checked:"checked"
+        -if @task.complete == 1
+          = p @task.complete
+          = f.label :complete
+          </br>
+          = f.check_box :complete, checked:"checked"
+        -else
+          = f.label :complete
+          </br>
+          = f.check_box :complete
       .field
         =f.label :category_id
         =f.collection_select :category_id, Category.all, :id, :name , { include_blank: t(".include_blank") },  { class: "form-control" }
