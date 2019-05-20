@@ -3,6 +3,9 @@ require 'rails_helper'
 RSpec.describe "Tasks", type: :request do
   describe "GET /tasks" do
     it "works! (now write some real specs)" do
+      ## TODO
+      ## サインイン処理を入れる。
+      ## 参考：https://qiita.com/Kohei_Kishimoto0214/items/e29e509b12a6eb484a42
       get tasks_path
       expect(response).to have_http_status(200)
     end

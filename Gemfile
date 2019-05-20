@@ -60,7 +60,7 @@ gem "factory_bot_rails", "~>4.11"
 gem 'better_errors'
 # エラー画面をわかりやすく整形してくれる
 gem 'binding_of_caller'
-# better_errorsの画面上にirb/pry(PERL)を表示する  
+# better_errorsの画面上にirb/pry(PERL)を表示する
 
 gem 'simple_calendar', '~> 2.0'
 #simple calendar

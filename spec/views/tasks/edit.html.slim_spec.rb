@@ -4,6 +4,8 @@ RSpec.describe "tasks/edit", type: :view do
   before(:each) do
     @task = assign(:task, Task.create!(
       :title => "MyString",
+      :category => Category.first,
+      :user => User.first,
       :complete => false
     ))
   end
