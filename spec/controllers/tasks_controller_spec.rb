@@ -59,6 +59,9 @@ RSpec.describe TasksController, type: :controller do
 
   describe "GET #new" do
     it "returns a success response" do
+      ## TODO
+      ## サインイン処理を入れる。
+      ## 参考：https://qiita.com/Kohei_Kishimoto0214/items/e29e509b12a6eb484a42
       get :new, params: {}, session: valid_session
       expect(response).to be_successful
     end
