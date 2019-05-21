@@ -1,12 +1,30 @@
 div
-h1.title top page
-
+h1.title TOP
 
 -if user_signed_in?
     h1 
       |welcome 
       = current_user&.nick_name
+      = icon("fas", "cat")
 
 img src="cat.jpg" alt="cat" class="img"
 
-
+/カルーセルのサンプル
+div.carousel.slide id="example-2" data-ride="carousel" 
+  ol.carousel-indicators
+    li.active data-target="#example-3" data-slide-to="0"
+    li data-target="#example-3" data-slide-to="1"
+    li data-target="#example-3" data-slide-to="2"
+  div.carousel-inner
+    div.carousel-item.active
+      img src="sample1.png" alt="First slide"
+    div.carousel-item
+      img src="sample2.png" alt="First slide"
+    div.carousel-item
+      img src="sample3.png" alt="First slide"
+    a.carousel-control-prev href="#example-2" role="button" data-slide="prev"
+      span.carousel-control-prev-icon aria-hidden="true"
+      span.sr-only Previous
+    a.carousel-control-next href="#example-2" role="button" data-slide="next"
+      span.carousel-control-next-icon aria-hidden="true"
+      span.sr-only Next

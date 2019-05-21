@@ -1,0 +1,50 @@
+h1.title =t".pagetitle"
+div
+ =search_form_for @q, url: admin_tasks_path do |f|
+     p.field
+     =f.label :title_cont, "タイトル"
+     =f.search_field :title_cont, class: "form-control"
+     p.field
+     =f.label :category_id_eq, "カテゴリー"
+     =f.collection_select :category_id_eq,@category, :id, :name , { include_blank: "カテゴリーを選択してください" },  { class: "form-control" }
+     p.field
+     =f.label :user_nick_name_cont, "ユーザ名"
+     =f.search_field :user_nick_name_cont, class: "form-control"
+     p.field
+     =f.label :complete_eq, "完了"
+     |<br>
+     =f.radio_button :complete_eq, "", {:checked => true}
+     |指定なし 　
+     =f.radio_button :complete_eq,"true"
+     |完了 　
+     =f.radio_button :complete_eq,"false"
+     |未完了
+     p.field    
+     =f.submit class: "btn btn-outline-primary"
+
+div.col-12.mt-3
+  table class="table table-hover mytable"
+    thead.alert-success
+      tr.text-center
+        th = sort_link(@q, :title, "タイトル")
+        th = t".minutes"
+        th = sort_link(@q, :complete, "完了")
+        th = t".category"
+        th = t".image"
+        th = sort_link(@q, :nick_name, "作成者")
+        th = "編集"
+        th = "削除"
+    tbody
+      - @tasks.each do |task|
+        tr.text-center
+          td = link_to task.title , admin_task_path(task)
+          td = task.minutes
+          td = task.complete? ? "〇":"×"
+          td = task.category&.name
+          td = task.image.attached? ? icon("fas", "camera"):""
+          td = task.user.nick_name
+          td = link_to icon("fas", "pen") , edit_admin_task_path(task)
+          td = link_to link_to icon("fas", "trash-alt"), admin_task_path(task), data: { confirm: 'Are you sure?' }, method: :delete
+  div.col-12.my-3
+    = paginate @tasks
+    

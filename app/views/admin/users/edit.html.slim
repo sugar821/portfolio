@@ -1,0 +1,17 @@
+h1.title =t".pagetitle"
+p#notice = notice
+
+div.col-12
+  /form_with moedl:@user, url:admin_user_path do |f|
+  =form_for @user, url:admin_user_path  do |f|
+    .field
+      =f.label :nick_name
+      =f.text_field :nick_name, class: "form-control", placeholder: "name"
+    .field
+      =f.label :email
+      =f.text_field :email, class: "form-control", placeholder: "mail"
+    .field
+      =f.label :admin
+      |</br>
+      =f.check_box :admin
+    .actions = f.submit nil , class: "form-control btn btn-outline-primary mt-2"

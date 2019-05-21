@@ -1,0 +1,46 @@
+h1.title =t".pagetitle"
+div.row
+  div.col-xl-8
+   h5.subtitle 累積時間
+   table class="table table-hover table-sm mytable"
+     thead.alert-success
+       tr
+         th = "カテゴリー"
+         th = "累計"
+     tbody
+      - @query.each do |task|
+         tr
+          td = task.category.name
+          td = task.minutes.to_i/60
+     hr
+  div.col-xl-4
+    h5.subtitle カレンダー
+    = month_calendar events: @calendar_tasks do |date, tasks| 
+      =date.strftime("%m/%d")
+      |</br>
+      - tasks.each do |task|
+        - if task.minutes.to_i/60 >= 4
+          .change_color1 
+        - elsif task.minutes.to_i/60 >= 3
+          .change_color2
+        - elsif task.minutes.to_i/60 >= 2
+          .change_color3 
+        - elsif task.minutes.to_i/60 >= 1
+          .change_color4
+        - else
+        |<br>
+    p
+        span.color4 1時間～
+        span.color3 2時間～
+        span.color2 3時間～
+        span.color1 4時間～
+div.row.col-12
+ h5.subtitle 未完了一覧
+ =render 'table'
+javascript:
+    $(function() {
+    $('.change_color1').parent('td').css('background','#047230');
+    $('.change_color2').parent('td').css('background','#047230');
+    $('.change_color3').parent('td').css('background','#98D1AF');
+    $('.change_color4').parent('td').css('background','#AABFB2');
+    });

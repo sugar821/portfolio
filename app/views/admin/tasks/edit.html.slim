@@ -1,0 +1,32 @@
+h1.title =t".pagetitle"
+
+div.col-12
+  = form_with model:@task, url:admin_task_path do |f|
+      - if @task.errors.any?
+        #error_explanation
+          h2 = "#{pluralize(@task.errors.count, "error")} prohibited this task from being saved:"
+          ul
+            - @task.errors.full_messages.each do |message|
+              li = message
+      .field
+        = f.label :title
+        = f.text_field :title, class: "form-control",placeholder: "たいとる", autofocus: true
+      .field
+        = f.label :updated_day
+        = f.date_field :updated_day, value:Date.today.strftime('%Y-%m-%d') ,class: "form-control"
+      .field
+        = f.label :minutes
+        = f.number_field :minutes, min:30,max:1800,step:30,class: "form-control",placeholder: "0"
+      .field
+        = f.label :complete
+        </br>
+        = f.check_box :complete, checked:"checked"
+      .field
+        =f.label :category_id
+        =f.collection_select :category_id, Category.all, :id, :name , { include_blank: t(".include_blank") },  { class: "form-control" }
+      .field
+        =f.label :image
+        |<br>
+        =f.file_field :image, class: "dropzone"
+      .actions = f.submit nil , method: :update, class: "form-control btn btn-outline-primary mt-2"
+      = link_to 'Back', :back

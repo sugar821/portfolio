@@ -7,27 +7,33 @@ ja:
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
-    models:
-      tasks:課題
-    attibutes:
-      tasks:
+    attributes:
+      task:
         title: タイトル
-        start_time: 開始時刻
-        finish_time: 終了時刻
-        complete: 完了
+        updated_day: 作業日
+        minutes: 作業時間
+        complete: 完了区分
         category: カテゴリー
         category_id: カテゴリー
-        img: 画像
-      users:
+        image: 画像
+      user:
         email: メールアドレス
         nick_name: ニックネーム
         password: パスワード
         password_confirmation: パスワード再入力
         current_password: 現在のパスワード
         remember_me: ログイン情報を記録する
-    errors:
-      messages:
-        record_invalid: "バリデーションに失敗しました: %{errors}"
+  shared:
+    header:
+      newtask: New Task
+      summary: SUMMARY
+      search: SEARCH
+      edit_registration: ユーザ情報編集
+      log_out: ログアウト
+      new_registration: 新規ユーザ登録
+      log_in: ログイン
+      admin_index: 全タスク管理
+      admin_console: ユーザ管理
   date:
     abbr_day_names:
     - 日

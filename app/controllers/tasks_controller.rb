@@ -4,43 +4,38 @@ class TasksController < ApplicationController
 
   # GET /tasks
   # GET /tasks.json
-  def index
-    @calendar_tasks = current_user.tasks
-    @q = current_user.tasks.ransack(params[:q])
-    @tasks = @q.result(distinct: true).page(params[:page]).per(5)
+  def summary
     @userid = current_user.id
-    @query = Task.find_by_sql(["select category_id ,sum(hours) as hours from tasks where user_id = #{@userid} group by category_id"])
+    #日毎の集計
+    @calendar_tasks = Task.find_by_sql(["select category_id ,sum(minutes) as minutes, updated_day from tasks where user_id = #{@userid} and complete = 't' group by updated_day"])
+    @q = current_user.tasks.ransack(params[:q])
+    @tasks = @q.result(distinct: true).where(complete: false).page(params[:page]).per(5)
+    #各カテゴリー毎の集計
+    @query = Task.find_by_sql(["select category_id ,sum(minutes) as minutes from tasks where user_id = #{@userid} and complete = 't' group by category_id"])
   end
   
-  def test_index
-    @calendar_tasks = current_user.tasks
+  # def admin_index
+  #   @q = Task.ransack(params[:q])
+  #   @category = Category.all 
+  #   @tasks = @q.result(distinct: true).order(id: "DESC").page(params[:page]).per(10)
+  # end
+  
+  # def admin_console
+  #   @users = User.all
+  # end
+    
+  def search
     @q = current_user.tasks.ransack(params[:q])
-    @tasks = @q.result(distinct: true).page(params[:page]).per(5)
-    @not_completed_tasks=current_user.tasks.where(complete:false)
-     
-    #CSV 文字コードUTF-8 excelに直接出すと文字化けする
+    @category = Category.all 
+    @tasks = @q.result(distinct: true).order(id: "DESC").page(params[:page]).per(5)
+    
+ #CSV 文字コードUTF-8 excelに直接出すと文字化けする
     respond_to do |format|
       format.html
       format.csv do
         send_data render_to_string, filename:"tasks-#{Time.zone.now.strftime('%Y%m%d%s')}.csv"
       end
     end
-  end
-  
-  def admin_index
-    @q = Task.ransack(params[:q])
-    @category = Category.all 
-    @tasks = @q.result(distinct: true).order(id: "DESC").page(params[:page]).per(10)
-  end
-  
-  def admin_console
-    @users = User.all
-  end
-    
-  def search
-    @q = current_user.tasks.ransack(params[:q])
-    @category = Category.all 
-    @tasks = @q.result(distinct: true).order(id: "DESC").page(params[:page]).per(5)
   end
 
   # GET /tasks/1
@@ -64,7 +59,7 @@ class TasksController < ApplicationController
     @task.user_id = current_user.id
     respond_to do |format|
       if @task.save
-        format.html { redirect_to @task, notice: 'Task was successfully created.' }
+        format.html { redirect_to @task, notice: '登録しました' }
         format.json { render :show, status: :created, location: @task }
       else
         format.html { render :new }
@@ -78,7 +73,7 @@ class TasksController < ApplicationController
   def update
     respond_to do |format|
       if @task.update(task_params)
-        format.html { redirect_to @task, notice: 'Task was successfully updated.' }
+        format.html { redirect_to @task, notice: '更新しました' }
         format.json { render :show, status: :ok, location: @task }
       else
         format.html { render :edit }
@@ -92,7 +87,7 @@ class TasksController < ApplicationController
   def destroy
     @task.destroy
     respond_to do |format|
-      format.html { redirect_to tasks_url, notice: 'Task was successfully destroyed.' }
+      format.html { redirect_to tasks_url, notice: '削除しました.' }
       format.json { head :no_content }
     end
   end
@@ -106,6 +101,6 @@ class TasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.require(:task).permit(:title, :hours, :complete, :category_id, :image)
+      params.require(:task).permit(:title, :hours, :minutes, :complete, :category_id, :image, :updated_day)
     end
 end

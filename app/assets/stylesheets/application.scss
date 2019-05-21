@@ -10,12 +10,14 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  * = require simple_calendar
+ * = require dropzone/basic
+ * = require dropzone/dropzone
  */
 @import "bootstrap";
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
-.main-bg-color{
+.main-container{
     background: whitesmoke;
 }
 .wrapper{
@@ -26,6 +28,12 @@
     display: inline-block;
     margin: 1rem 0;
     background: linear-gradient(transparent 70%, #a7d6ff 70%);
+}
+
+.subtitle{
+    display: inline-block;
+    margin: 1rem 0;
+    background: linear-gradient(transparent 70%, #98D1AF 70%);
 }
 
 .admin-title{
@@ -56,4 +64,29 @@
     color: white !important;
     width: 9rem;
     text-align: center;
+}
+
+.color1{
+    background: #047230;
+}
+.color2{
+    background: #43B26F;
+}
+.color3{
+    background: #98D1AF;
+}
+.color4{
+    background: #AABFB2;
+}
+
+.dropzone {
+    border: 2px dashed #b4bcc2;
+    width: 100%;
+}
+.show-table{
+    width: 10%;
+    text-align: right;
+}
+.small-calendar{
+    zoom: 50%;
 }

@@ -3,7 +3,10 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.2'
+<<<<<<< HEAD
 # Use sqlite3 as the database for Active Record
+=======
+>>>>>>> 1a8a7b0ee66ffed3e44c8b2a1081b17853a2cea0
 
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
@@ -67,12 +70,13 @@ gem 'simple_calendar', '~> 2.0'
 
 gem "font-awesome-sass"
 
-gem 'pg', '~> 0.19.0', group: :production
+gem 'dropzonejs-rails'
 
-group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platform: :mri
-end
+gem 'sqlite3', '~> 1.3.6', group: :development
+
+gem 'pg', '~> 0.18', group: :production
+gem 'rails_12factor', group: :production
+gem 'spring-commands-rspec'
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
@@ -86,3 +90,4 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
