@@ -3,10 +3,6 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.2'
-<<<<<<< HEAD
-# Use sqlite3 as the database for Active Record
-=======
->>>>>>> 1a8a7b0ee66ffed3e44c8b2a1081b17853a2cea0
 
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
