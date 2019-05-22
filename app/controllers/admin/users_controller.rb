@@ -13,6 +13,7 @@ class Admin::UsersController < ApplicationController
     #     end
     # end
     
+    
     def update
         @user = User.find_by(id: params[:id])
         respond_to do |format|
