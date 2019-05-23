@@ -68,8 +68,6 @@ gem "font-awesome-sass"
 
 gem 'dropzonejs-rails'
 
-gem 'sqlite3', '~> 1.3.6', group: :development
-
 gem 'pg', '~> 0.18', group: :production
 gem 'rails_12factor', group: :production
 gem 'spring-commands-rspec'
