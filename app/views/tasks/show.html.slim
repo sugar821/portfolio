@@ -18,4 +18,5 @@ div.col-12
     tr        
         td.show-table  = t ".image"
         td = @task.image.attached? ? (image_tag @task.image,class: "img") :(icon("fas","eye-slash"))
+= link_to "戻る", tasks_summary_path
   

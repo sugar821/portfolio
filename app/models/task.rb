@@ -3,7 +3,7 @@ class Task < ApplicationRecord
     belongs_to :category
     has_one_attached :image
     validates :title, presence: true
-    validates :hours, presence: true
+    validates :minutes, presence: true
     # validate :start_end_check
     
     # def start_end_check
