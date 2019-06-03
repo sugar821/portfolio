@@ -51,11 +51,6 @@ gem 'pry-rails'
 gem 'pry-doc'
 #DBを見やすく
 
-gem "rspec-rails", "~>3.7"
-#Rspecテスト用GEM
-gem "factory_bot_rails", "~>4.11"
-#テストデータ作成支援
-
 gem 'better_errors'
 # エラー画面をわかりやすく整形してくれる
 gem 'binding_of_caller'
@@ -70,8 +65,10 @@ gem 'dropzonejs-rails'
 
 gem 'pg', '~> 0.18', group: :production
 gem 'rails_12factor', group: :production
-gem 'spring-commands-rspec'
 
+
+gem 'selenium-webdriver'
+gem 'webdrivers'
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console'
@@ -82,6 +79,15 @@ group :development do
   gem 'sqlite3', '~> 1.3.6'
 end
 
+group :development, :test do
+  gem "rspec-rails", "~>3.7"
+  #Rspecテスト用GEM
+  gem "factory_bot_rails", "~>4.11"
+  #テストデータ作成支援
+  gem 'spring-commands-rspec'
+  #rspecの起動時間短縮
+  gem 'capybara', "~>2.15.2"
+end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 

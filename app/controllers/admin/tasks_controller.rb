@@ -4,22 +4,29 @@ class Admin::TasksController < ApplicationController
   def index
     @q = Task.ransack(params[:q])
     @category = Category.all 
-    @tasks = @q.result(distinct: true).order(id: "DESC").page(params[:page]).per(10)
+    respond_to do |format|
+      format.html
+        @tasks = @q.result(distinct: true).order(id: "DESC").page(params[:page]).per(10)
+      format.csv do
+        @tasks = @q.result(distinct: true).order(id: "DESC")
+        send_data render_to_string, filename:"tasks-#{Time.zone.now.strftime('%Y%m%d%s')}.csv"
+      end
+    end
   end
   
   def console
     @users = User.all
   end
     
+  #CSV 文字コードUTF-8 excelに直接出すと文字化けする  
   def search
-    @q = current_user.tasks.ransack(params[:q])
-    @category = Category.all 
-    @tasks = @q.result(distinct: true).order(id: "DESC").page(params[:page]).per(5)
-    
- #CSV 文字コードUTF-8 excelに直接出すと文字化けする
+        @q = current_user.tasks.ransack(params[:q])
+        @category = Category.all 
     respond_to do |format|
       format.html
+        @tasks = @q.result(distinct: true).order(id: "DESC").page(params[:page]).per(5)
       format.csv do
+        @tasks = @q.result(distinct: true).order(id: "DESC")
         send_data render_to_string, filename:"tasks-#{Time.zone.now.strftime('%Y%m%d%s')}.csv"
       end
     end

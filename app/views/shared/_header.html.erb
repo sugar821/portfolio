@@ -9,36 +9,36 @@
      </li>   
         <% if user_signed_in? %>
             <li class="nav-item">
-              <%= link_to t(".newtask"), new_task_path, class: "nav-link" %>
+              <%= link_to t(".newtask"), new_task_path, class: "nav-link nav-btn" %>
             </li>
             <li class="nav-item">
-              <%= link_to t(".summary"), tasks_summary_path, class: "nav-link" %>
+              <%= link_to t(".summary"), tasks_summary_path, class: "nav-link nav-btn" %>
             </li>
             <li class="nav-item">
-              <%= link_to t(".search"), tasks_search_path, class: "nav-link" %>
+              <%= link_to t(".search"), tasks_search_path, class: "nav-link nav-btn" %>
             </li>
             <li class="nav-item">
-              <%= link_to t(".edit_registration"), edit_user_registration_path, class: "nav-link" %>
+              <%= link_to t(".edit_registration"), edit_user_registration_path, class: "nav-link nav-btn" %>
             </li>
         <% else %>
-             <li class="nav-item">
-               <%= link_to t(".new_registration"), new_user_registration_path, class: "nav-link" %>
+             <li class="nav-item>
+               <%= link_to t(".new_registration"), new_user_registration_path, class: "nav-link nav-btn" %>
              </li>
              <li class="nav-item">
-               <%= link_to t(".log_in"), new_user_session_path, class: "nav-link" %>
+               <%= link_to t(".log_in"), new_user_session_path, class: "nav-link nav-btn" %>
              </li>
        <% end %>
        <% if current_user&.admin? %>
              <li class="nav-item">
-               <%= link_to t(".admin_index"), admin_tasks_path, class: "nav-link" %>
+               <%= link_to t(".admin_index"), admin_tasks_path, class: "nav-link nav-btn" %>
              </li>
              <li class="nav-item">
-               <%= link_to t(".admin_console"), admin_tasks_console_path, class: "nav-link" %>
+               <%= link_to t(".admin_console"), admin_tasks_console_path, class: "nav-link nav-btn" %>
              </li>
        <% end %>
        <% if user_signed_in? %>
              <li class="nav-item">
-               <%= link_to t(".log_out"), destroy_user_session_path, method: :delete, class: "nav-link" %>
+               <%= link_to t(".log_out"), destroy_user_session_path, method: :delete, class: "nav-link nav-btn" %>
              </li>
        <% end %>
        <% if current_user&.admin? %>

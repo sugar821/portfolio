@@ -22,7 +22,7 @@ div.col-12
           td = task.created_at.strftime("%Y/%m/%d")
           td = task.image.attached? ? icon("fas", "camera"):""
           td = link_to icon("fas", "pen") , edit_task_path(task)
-          td = link_to icon("fas", "trash-alt"), task, data: { confirm: 'Are you sure?' }, method: :delete
+          td = link_to icon("fas", "trash-alt"), task, data: { confirm: '本当に削除しますか？' }, method: :delete
   div.col-12.my-3
     = paginate @tasks
     

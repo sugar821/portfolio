@@ -25,4 +25,6 @@ div
      =f.submit class: "btn btn-outline-primary"
 div
  == render 'table'
+ = link_to "CSV出力", admin_tasks_path(params.merge(format: :csv).permit!), tasks: @tasks, class: "btn btn-info float-right"
+ /# 参考:http://stackoverflow.com/questions/38308130/attempting-to-generate-a-url-from-non-sanitized-request-parameters
  

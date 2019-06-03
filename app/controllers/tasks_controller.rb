@@ -13,26 +13,16 @@ class TasksController < ApplicationController
     #各カテゴリー毎の集計
     @query = Task.find_by_sql(["select category_id ,sum(minutes) as minutes from tasks where user_id = #{@userid} and complete = 't' group by category_id"])
   end
-  
-  # def admin_index
-  #   @q = Task.ransack(params[:q])
-  #   @category = Category.all 
-  #   @tasks = @q.result(distinct: true).order(id: "DESC").page(params[:page]).per(10)
-  # end
-  
-  # def admin_console
-  #   @users = User.all
-  # end
-    
+
+ #CSV 文字コードUTF-8 excelに直接出すと文字化けする  
   def search
-    @q = current_user.tasks.ransack(params[:q])
-    @category = Category.all 
-    @tasks = @q.result(distinct: true).order(id: "DESC").page(params[:page]).per(5)
-    
- #CSV 文字コードUTF-8 excelに直接出すと文字化けする
+        @q = current_user.tasks.ransack(params[:q])
+        @category = Category.all 
     respond_to do |format|
       format.html
+        @tasks = @q.result(distinct: true).order(id: "DESC").page(params[:page]).per(5)
       format.csv do
+        @tasks = @q.result(distinct: true).order(id: "DESC")
         send_data render_to_string, filename:"tasks-#{Time.zone.now.strftime('%Y%m%d%s')}.csv"
       end
     end
