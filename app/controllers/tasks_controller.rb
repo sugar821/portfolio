@@ -7,7 +7,7 @@ class TasksController < ApplicationController
   def summary
     @userid = current_user.id
     #日毎の集計
-    @calendar_tasks = Task.find_by_sql(["select category_id ,sum(minutes) as minutes, updated_day from tasks where user_id = #{@userid} and complete = 't' group by updated_day"])
+    @calendar_tasks = Task.find_by_sql(["select category_id ,sum(minutes) as minutes, updated_day from tasks where user_id = #{@userid} and complete = '1' group by updated_day"])
     @q = current_user.tasks.ransack(params[:q])
     @tasks = @q.result(distinct: true).where(complete: false).page(params[:page]).per(5)
     #各カテゴリー毎の集計
