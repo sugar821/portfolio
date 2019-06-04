@@ -1,52 +1,52 @@
-# README
-
-## 概要
-    実行タスク管理のアプリケーションです。
-    
-## 機能一覧
-    ログイン、ログアウト機能
-    ユーザ情報編集機能
-    パスワードリマインダー機能
-    タスク一覧表示機能
-    タスク投稿、編集機能
-    画像アップロード機能
-    ページネーション機能
-    カレンダー表示機能
-    タスク一覧の検索、ソート機能
-    CSV出力機能
-# 権限設定機能について
-    各タスクは自身の登録したタスクのみ閲覧、編集削除が可能
-    管理者のみ全てのユーザが登録したタスクを管理可能
-    管理者は一般ユーザのアカウント削除可能
-    
-## 使用しているGEM
-    -devise
-        ユーザ認証
-    -bootstrap4
-        bootstrap4
-    -kaminari
-        ページネーション
-    -ransack
-        検索機能
-    -dropzonejs-rails
-        画像のドラッグ&ドロップ
-    -simple_calendar
-        カレンダー機能
-    -font-awesome-sass
-        font-awesome
-    -slim-rails
-        slim記法
-    -html2slim
-        erb->slimの変換
-    -pry-rails
-        rails consoleでのPry使用
-    -pry-doc
-        rails consoleでのPry使用
-    -rspec-rails
-        テスト用Rspec
-    -factory_bot_rails
-        テストデータ作成支援
-    -better_errors
-        エラー画面をわかりやすく整形
-    -binding_of_caller
-        better_errorsの画面上にirb/pry(PERL)を表示する  
+# 目的
+-  タスク管理およびタスク実施履歴の可視化
+# 機能
+## ユーザ関連
+-  ユーザ登録/削除
+-  ログイン/ログアウト
+    -  GEM devise使用
+-  登録メールアドレスへのパスワードリマインダー送信
+-  管理者権限
+    -  全ユーザのタスク管理閲覧/削除
+    -  全ユーザアカウントの閲覧/削除
+## タスク関連
+-  タスク登録/編集/削除
+-  登録タスク検索/ソート
+    -   GEM ransack
+-  画像登録
+-  ページネーション
+    -  GEM kaminari
+-  カレンダー
+    -  GEM simple_calendar
+## テスト
+-  Rspec
+## HTML/CSS
+-  slim記法
+    -  GEM slim-rails
+-  CSS
+    -  GEM bootstrap4
+## GEM
+- devise
+    - ユーザ認証
+- bootstrap4
+- kaminari
+    - ページネーション追加
+- ransack
+    - 検索機能追加
+- slim-rails
+    - slimのジェネレータ
+- html2slim
+    - erb->slimの変換
+- pry-rails
+- pry-doc
+    - DBを見やすく
+- rspec-rails
+    - Rspecテスト用GEM
+- factory_bot_rails
+    - テストデータ作成支援
+- simple_calendar
+    - simple calendar
+- font-awesome-sass
+    - font-awesome
+- dropzonejs-rails
+    - dropzone
