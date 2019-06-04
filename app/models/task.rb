@@ -4,26 +4,14 @@ class Task < ApplicationRecord
     has_one_attached :image
     validates :title, presence: true
     validates :minutes, presence: true
-    # validate :start_end_check
+    validate :minutes_check
     
-    # def start_end_check
-    #     errors.add(:finish_time, "がstart_timeよりも早い時間になっています")unless
-    #     self.start_time <= finish_time
-    # end
+    def minutes_check
+        errors.add(:minutes, "が30分単位になっていません")unless
+        self.minutes.to_i % 30 == 0
+    end
     
     def start_time
         self.updated_day
     end
-    # def self.csv_attributes
-    #     %w(title start_time finish_time complete)
-    # end
-    
-    # def self.generate_csv
-    #     CSV.generate(headers: true) do |csv|
-    #         csv << csv_attributes
-    #         all.each do |task|
-    #          csv << csv_attributes.map{|attr| task.send(attr)}
-    #         end
-    #     end
-    # end
 end

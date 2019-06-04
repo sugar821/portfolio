@@ -15,29 +15,11 @@ RSpec.describe TasksController, type: :controller do
         end
     end
     
-    #ログインユーザが正常にページアクセスできる事
-    describe "#summary" do
+    #一般ログインユーザが正常にページアクセスできる事
+    describe "#access check" do
         context "as authenticate_user" do
             before do
                 @user = FactoryBot.create(:user)
-            end
-            
-            it "add task" do
-                @category = FactoryBot.create(:category)
-                sign_in @user
-                task_params = {title:"test", minutes:60, complete:false, user_id: @user, category_id: @category}
-                expect{
-                    post :create, params: {task: task_params}
-                }.to change(Task, :count).by(1)
-            end
-            
-            it "cant add invalid task" do
-                @category = FactoryBot.create(:category)
-                sign_in @user
-                task_params = {title:nil, minutes:60, complete:false, user_id: @user, category_id: @category}
-                expect{
-                    post :create, params: {task: task_params}
-                }.to_not change(Task, :count)
             end
             
             it "responds successfully to summary" do
@@ -46,9 +28,9 @@ RSpec.describe TasksController, type: :controller do
                 expect(response).to have_http_status "200"
             end
             
-            it "responds successfully to new" do
+            it "responds successfully to search" do
                 sign_in @user
-                get :new
+                get :search
                 expect(response).to have_http_status "200"
             end
         end
@@ -63,6 +45,62 @@ RSpec.describe TasksController, type: :controller do
             it "redirect_to sign_in" do
                 get :summary
                 expect(response).to redirect_to "/users/sign_in"
+            end
+        end
+        
+    #バリデーションテスト    
+        context "validate add tasks" do
+            before do
+                @user = FactoryBot.create(:user)
+            end
+            
+            #全ての値が正しく入力されている場合、タスク追加できる
+            it "add task" do
+                @category = FactoryBot.create(:category)
+                sign_in @user
+                task_params = {title:"test", minutes:60, complete:false, user_id: @user, category_id: @category}
+                expect{
+                    post :create, params: {task: task_params}
+                }.to change(Task, :count).by(1)
+            end
+            #タイトルがnilの場合、タスクが追加できない
+            it "cant add invalid task no title" do
+                @category = FactoryBot.create(:category)
+                sign_in @user
+                task_params = {title:nil, minutes:60, complete:false, user_id: @user, category_id: @category}
+                expect{
+                    post :create, params: {task: task_params}
+                }.to_not change(Task, :count)
+            end
+            
+            #カテゴリーがnilの場合、タスクが追加できない
+            it "cant add invalid task no category" do
+                @category = FactoryBot.create(:category)
+                sign_in @user
+                task_params = {title:"test", minutes:60, complete:false, user_id: @user, category_id: nil}
+                expect{
+                    post :create, params: {task: task_params}
+                }.to_not change(Task, :count)
+            end
+            
+            #作業時間がnilの場合、タスクが追加できない
+            it "cant add invalid task no minutes" do
+                @category = FactoryBot.create(:category)
+                sign_in @user
+                task_params = {title:"test", minutes:nil, complete:false, user_id: @user, category_id: @category}
+                expect{
+                    post :create, params: {task: task_params}
+                }.to_not change(Task, :count)
+            end
+            
+            #作業時間が30分単位でない場合、タスクが追加できない
+            it "cant add invalid task not correct minutes" do
+                @category = FactoryBot.create(:category)
+                sign_in @user
+                task_params = {title:"test", minutes:45, complete:false, user_id: @user, category_id: @category}
+                expect{
+                    post :create, params: {task: task_params}
+                }.to_not change(Task, :count)
             end
         end
     end
