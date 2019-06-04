@@ -1,7 +1,7 @@
-##目的
+## 目的
     タスク管理およびタスク実施履歴の可視化
-##機能
-#ユーザ関連
+## 機能
+# ユーザ関連
     ユーザ登録/削除
     ログイン/ログアウト
         GEM devise使用
@@ -9,7 +9,7 @@
     管理者権限
         全ユーザのタスク管理閲覧/削除
         全ユーザアカウントの閲覧/削除
-#タスク関連
+# タスク関連
     タスク登録/編集/削除
     登録タスク検索/ソート
         GEM ransack
@@ -18,14 +18,14 @@
         GEM kaminari
     カレンダー
         GEM simple_calendar
-#テスト関連
+# テスト関連
     Rspec
-#HTML/CSS
+# HTML/CSS
     slim記法
         GEM slim-rails
     CSS
         GEM bootstrap4
-##GEM
+## GEM
 devise
     ユーザ認証
 bootstrap4
