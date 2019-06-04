@@ -66,7 +66,6 @@ gem 'dropzonejs-rails'
 gem 'pg', '~> 0.18', group: :production
 gem 'rails_12factor', group: :production
 
-
 gem 'selenium-webdriver'
 gem 'webdrivers'
 group :development do
