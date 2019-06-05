@@ -56,7 +56,7 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "mytask_#{Rails.env}"
   
-  config.action_mailer.default_url_options = {  host: 'localhost', port: 3000 }
+  config.action_mailer.default_url_options = {  host: 'nagata_portfolio', port: 3000 }
   
   config.action_mailer.raise_delivery_errors = true
   
