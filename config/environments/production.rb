@@ -56,18 +56,19 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "mytask_#{Rails.env}"
   
-  config.action_mailer.default_url_options = {  host: 'nagata_portfolio', port: 3000 }
+  config.action_mailer.default_url_options = {  host: 'nagata_portfolio'}
   
   config.action_mailer.raise_delivery_errors = true
   
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :address => "smtp.gmail.com",
-    :port => 587,
-    :user_name => "riteruuu@gmail.com",
-    :password => "usami3dayo",
+    :address        => 'smtp.sendgrid.net',
+    :port           => '587',
     :authentication => :plain,
-    :enable_starttls_auto => true
+    :user_name      => ENV['SENDGRID_USERNAME'],
+    :password       => ENV['SENDGRID_PASSWORD'],
+    :domain         => 'heroku.com',
+    :enable_starttls_auto => truee
   }
   
   config.action_mailer.perform_caching = false
