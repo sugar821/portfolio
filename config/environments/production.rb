@@ -68,7 +68,7 @@ Rails.application.configure do
     :user_name      => ENV['sugarpot'],
     :password       => ENV['usami3dayo'],
     :domain         => 'heroku.com',
-    :enable_starttls_auto => truee
+    :enable_starttls_auto => true
   }
   
   config.action_mailer.perform_caching = false
