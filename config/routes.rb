@@ -9,7 +9,11 @@ Rails.application.routes.draw do
   get "tasks/summary" , "tasks#summary"
   
   devise_for :users
-  resources :tasks
+  resources :tasks do
+    member do
+      delete "delete_image"
+    end
+  end
   resources :users
   root "tasks#top"
 end
