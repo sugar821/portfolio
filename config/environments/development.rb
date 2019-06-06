@@ -29,7 +29,7 @@ Rails.application.configure do
   # Don't care if the mailer can't send.
   
   #メール送信成功、アクセス先は変更しないといけない。
-  #このままだとlocalhost3000/user/edit....にアクセスしてしまう。
+  #AWS環境だとlocalhost3000/user/edit....にアクセスしてしまう。
   config.action_mailer.default_url_options = {  host: 'localhost', port: 3000 }
   
   config.action_mailer.raise_delivery_errors = true
