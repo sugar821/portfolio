@@ -57,16 +57,12 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "mytask_#{Rails.env}"
   
   config.action_mailer.default_url_options = {  host: 'nagata_portfolio'}
-  
-  config.action_mailer.raise_delivery_errors = true
-  
-  config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     :address        => 'smtp.sendgrid.net',
     :port           => '587',
     :authentication => :plain,
-    :user_name      => ENV['sugarpot'],
-    :password       => ENV['usami3dayo'],
+    :user_name      => 'sugarpot',
+    :password       => 'usami3dayo',
     :domain         => 'heroku.com',
     :enable_starttls_auto => true
   }
