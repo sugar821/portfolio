@@ -32,7 +32,7 @@ div.col-12
         =f.label :image
         |<br>
         =f.file_field :image, class: "dropzone"
-        = @task.image.attached? ? (image_tag @task.image,class: "img") :""
-        = @task.image.attached? ? (link_to "画像を削除する",delete_image_task_path, data: { confirm: '本当に画像を削除しますか？' }, method: :delete, class: "btn btn-outline-danger float-right mt-2") :""
+        = image_tag @task.image, class: "img" if @task.image.attached?
+        = link_to "画像を削除する",delete_image_task_path, data: { confirm: '本当に画像を削除しますか？' }, method: :delete, class: "btn btn-outline-danger float-right mt-2" if @task.image.attached?
       .actions = f.submit nil , class: "form-control btn btn-outline-primary mt-2"
       = link_to 'Back', :back
