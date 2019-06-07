@@ -1,12 +1,36 @@
 require 'rails_helper'
-#typeをcontroller -> request に変更
-#参考: https://stackoverflow.com/questions/29853056/rspec-undefined-method-request
-RSpec.describe Task do
-    it "has valid factory task" do
-        expect(FactoryBot.build(:task)).to be_valid
+RSpec.describe Task, type: :model  do
+    it "is valid with title minutes complete category user " do
+        task = FactoryBot.build(:task)
+        expect(task).to be_valid
     end
     
-    it "has valid factory category" do
-        expect(FactoryBot.build(:category)).to be_valid
+    it "can upload image" do
+        task = FactoryBot.build(:task).image
+        expect(task).to be_an_instance_of(ActiveStorage::Attached::One)
+    end
+    
+    it "is invalid with no title" do
+        task = FactoryBot.build(:task, title:nil)
+        task.valid?
+        expect(task.errors[:title]).to include("を入力してください")
+    end
+    
+    it "is invalid with no minutes" do
+        task = FactoryBot.build(:task, minutes:nil)
+        task.valid?
+        expect(task.errors[:minutes]).to include("を入力してください")
+    end
+
+    it "is invalid with no category" do
+        task = FactoryBot.build(:task, category:nil)
+        task.valid?
+        expect(task.errors[:category]).to include("を入力してください")
+    end
+    
+    it "is invalid with no user " do
+        task = FactoryBot.build(:task, user:nil)
+        task.valid?
+        expect(task.errors[:user]).to include("を入力してください")
     end
 end
