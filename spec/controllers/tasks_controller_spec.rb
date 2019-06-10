@@ -129,6 +129,23 @@ RSpec.describe TasksController, type: :controller do
         end
     end
     
+    
+   #管理者が管理者用ページにアクセスできる事
+        context "admin_user access admin_pages" do
+            before do
+                @admin_user = FactoryBot.create(:user, admin:true)
+            end
+            
+            it "responds successfully to admin tasks" do
+                expect(get("/admin/tasks/console")).
+                to route_to("admin/tasks/console")
+            end
+            
+            
+        end
+   
+
+    
   #自身のTASKを操作可能な事
     describe "update/destroy" do
         #task ownerはアップデート可能
