@@ -1,0 +1,22 @@
+/div.modal-dialog
+  div.modal-content
+    = form_for @task do |f|
+      .field
+      = f.label :comment
+      = f.text_field :comment, class: "form-control",placeholder: "COMMENT", autofocus: true
+      .actions = f.submit nil , class: "form-control btn btn-outline-primary mt-2"
+
+      
+    
+div.modal-dialog role="document"
+    div.modal-content
+      div.modal-header
+        h5.modal-title id="exampleModalLabel"モーダルのタイトル
+        button type="button" class="close" data-dismiss="modal" aria-label="閉じる"
+          span aria-hidden="true"&times;
+      div
+      div.modal-body
+        
+      div.modal-footer
+        button class="btn btn-secondary" data-dismiss="modal" 閉じる
+        button class="btn btn-primary" 変更を保存

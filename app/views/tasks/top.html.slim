@@ -1,29 +1,26 @@
 div
 h1.title TOP
-
--if user_signed_in?
-    h1 
-      |welcome 
-      = current_user&.nick_name
-      = icon("fas", "cat")
-
-/img src="cat.jpg" alt="cat" class="img"
-
-div.carousel.slide id="example-2" data-ride="carousel" 
-  ol.carousel-indicators
-    li.active data-target="#example-3" data-slide-to="0"
-    li data-target="#example-3" data-slide-to="1"
-    li data-target="#example-3" data-slide-to="2"
-  div.carousel-inner
-    div.carousel-item.active
-      img src="movies.jpg" alt="First slide" class="img"
-    div.carousel-item
-      img src="active.jpg" alt="First slide" class="img"
-    div.carousel-item
-      img src="cat.jpg" alt="First slide" class="img"
-    a.carousel-control-prev href="#example-2" role="button" data-slide="prev"
-      span.carousel-control-prev-icon aria-hidden="true"
-      span.sr-only Previous
-    a.carousel-control-next href="#example-2" role="button" data-slide="next"
-      span.carousel-control-next-icon aria-hidden="true"
-      span.sr-only Next
+<br>
+div#comment tabindex="-1" role="dialog"  aria-hidden="true"
+div.row
+  - @tasks.each do |task|
+    .fiv.col-sm-6.col-xl-4
+      div.mt-2.card.p-2
+        - if task.image.attached?
+          = image_tag task.image, size:"100x100", class:"img card-img-top mb-2"
+        div.card-title
+          - if task.user.avatar.attached?
+              a.mr-3 = image_tag task.user.avatar, size:"30x30", class:"avatar"
+          - else
+              a.mr-3 = image_tag src= "/no_image.png", size:"30x30", class:"avatar"
+          a.mr-3 = task.user.nick_name
+          = task.updated_day
+        div.card-text
+          a.mr-3 = task.title
+          a.mr-3 = task.minutes
+          = task.category.name
+          <br>
+          = link_to "編集/" , edit_task_path(task) if task.user_id == current_user.id
+          = link_to "削除/", task, data: { confirm: '本当に削除しますか？' }, method: :delete if task.user_id == current_user.id
+          = link_to "comment", new_review_path, remote:true
+    /div#comment.modal.fade tabindex="-1" role="dialog"  aria-hidden="true"

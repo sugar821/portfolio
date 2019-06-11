@@ -3,17 +3,6 @@ class Admin::UsersController < ApplicationController
         @user = User.find_by(id: params[:id])
     end
     
-    # def update
-    #     @user = User.find_by(id: params[:id])
-    #     @user.update
-    #     if @user.save(user_params)
-    #         redirect_to admin_tasks_console_path
-    #     else
-    #         render :edit
-    #     end
-    # end
-    
-    
     def update
         @user = User.find_by(id: params[:id])
         respond_to do |format|
@@ -32,7 +21,17 @@ class Admin::UsersController < ApplicationController
         redirect_to admin_tasks_console_path
     end
     
-    def user_params
-      params.require(:user).permit(:nick_name, :admin, :email)
+    def delete_avatar
+      @user = User.find_by(id: params[:id])
+      @user.avatar.purge
+      respond_to do |format|
+        format.html { redirect_to edit_user_path, notice: '削除しました.' }
+        format.json { head :no_content }
+      end
     end
+    
+    private
+      def user_params
+        params.require(:user).permit(:nick_name, :admin, :email, :avatar)
+      end
 end
