@@ -2,19 +2,13 @@ class ReviewsController < ApplicationController
     before_action :set_task, only:[:new]
 
     def new
-        logger.debug @task.id
-        logger.debug params[:task_id]
         @review = Review.new
     end
     
     def create
+        logger.debug params
         @review = Review.new(review_params)
         @review.user_id = current_user.id
-        # @review.task_id = @task_id
-        logger.debug "------------↓@comment id↓------------"
-        logger.debug @review.task_id
-        logger.debug "------------↓params↓------------"
-        logger.debug params
         if @review.save!
           head :no_content
         else
@@ -23,9 +17,9 @@ class ReviewsController < ApplicationController
     end
 
  private
-
+ 
  def review_params
-  params.require(:review).permit(:comment, :good, :task, :user,:user_id)
+  params.require(:review).permit(:comment, :good, :task, :task_id, :user,:user_id)
  end
 
  def set_task

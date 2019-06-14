@@ -1,8 +1,11 @@
 div
 h1.title TOP
 <br>
-div#comment tabindex="-1" role="dialog"  aria-hidden="true" 
-/div#comment.modal.fade tabindex="-1" role="dialog"  aria-hidden="true"
+
+/div.modal.fade#comment tabindex="-1" role="dialog"  aria-hidden="true"
+/div#comment tabindex="-1" role="dialog"  aria-hidden="true"
+div#comment.modal.fade tabindex="-1" role="dialog"  aria-hidden="true"
+
 div.row
   - @tasks.each do |task|
     .fiv.col-sm-6.col-xl-4
@@ -18,10 +21,11 @@ div.row
           = task.updated_day
         div.card-text
           a.mr-3 = task.title
-          a.mr-3 = task.minutes
+          <br>
+          a.mr-3 = "#{task.minutes} 分"
+          <br>
           = task.category.name
           <br>
           = link_to "編集/" , edit_task_path(task) if task&.user_id == current_user&.id
           = link_to "削除/", task, data: { confirm: '本当に削除しますか？' }, method: :delete if task&.user_id == current_user&.id
-          = link_to "comment", new_task_review_path(task), remote:true
-    
+          = link_to "comment", new_task_review_path(task), remote: true, "data-toggle": "modal", "data-target": "#comment"
