@@ -3,17 +3,16 @@ class ReviewsController < ApplicationController
 
     def new
         logger.debug @task.id
+        logger.debug params[:task_id]
         @review = Review.new
     end
     
     def create
         @review = Review.new(review_params)
         @review.user_id = current_user.id
-        # @review.task_id = 1
-       
+        # @review.task_id = @task_id
         logger.debug "------------↓@comment id↓------------"
-        logger.debug @task
-        
+        logger.debug @review.task_id
         logger.debug "------------↓params↓------------"
         logger.debug params
         if @review.save!
