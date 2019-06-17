@@ -10,7 +10,7 @@ class ReviewsController < ApplicationController
         @review = Review.new(review_params)
         @review.user_id = current_user.id
         if @review.save!
-          head :no_content
+          redirect_to root_path
         else
           head :no_content
         end
