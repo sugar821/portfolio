@@ -1,0 +1,16 @@
+h1.title =t".pagetitle"
+p#notice = notice
+
+div.col-12
+    - @reviews.each do |review|
+        div.card.p-2
+            div.card-title
+                - if review.user.avatar.attached?
+                  = image_tag review.user.avatar, size:"30x30", class:"avatar"
+                - else
+                  = image_tag src= "/no_image.png", size:"30x30", class:"avatar"
+                = review.user.nick_name
+            div.card-text
+            = simple_format review.comment
+            = link_to "編集", edit_review_path(review) if review&.user_id == current_user&.id
+            = link_to "削除", review, data: { confirm: '本当に削除しますか？' }, method: :delete if review&.user_id == current_user&.id

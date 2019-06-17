@@ -8,7 +8,7 @@ div#comment.modal.fade tabindex="-1" role="dialog"  aria-hidden="true"
 
 div.row
   - @tasks.each do |task|
-    .fiv.col-sm-6.col-xl-4
+    .div.col-sm-6.col-xl-4
       div.mt-2.card.p-2
         - if task.image.attached?
           = image_tag task.image, size:"100x100", class:"img card-img-top mb-2"
@@ -26,7 +26,11 @@ div.row
           <br>
           = task.category.name
           <br>
-          = link_to "編集/" , edit_task_path(task) if task&.user_id == current_user&.id
-          = link_to "削除/", task, data: { confirm: '本当に削除しますか？' }, method: :delete if task&.user_id == current_user&.id
-          = link_to "comment", new_task_review_path(task), remote: true, "data-toggle": "modal", "data-target": "#comment"
-          = task&.likes_count
+          -if user_signed_in?
+            = link_to "編集" , edit_task_path(task) if task&.user_id == current_user&.id
+            = " / " if task&.user_id == current_user&.id
+            = link_to "削除", task, data: { confirm: '本当に削除しますか？' }, method: :delete if task&.user_id == current_user&.id
+            = " / " if task.likes_count != nil
+            = link_to "コメントする", new_task_review_path(task), remote: true, "data-toggle": "modal", "data-target": "#comment" if task&.user_id != current_user&.id
+          = "#{task&.likes_count} 件のコメントがあるよ！" if task.likes_count != nil
+          = link_to "show", task_reviews_path(task)
