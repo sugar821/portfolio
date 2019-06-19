@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-    before_action :authenticate_user!
+    before_action :authenticate_user!, except:[:index]
     before_action :set_task, only:[:index,:new]
     before_action :set_review, only:[:edit, :update, :destroy]
 
