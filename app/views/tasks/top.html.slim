@@ -2,9 +2,9 @@ div
 h1.title TOP
 <br>
 
-if @tasks.count == 0
- = タスクが登録されていません。
- = link_to "新しいタスクを登録してください。",new_task_path
+- if @tasks.count == 0
+  p タスクが登録されていません。
+  p = link_to "新しいタスクを登録してください。",new_task_path
 div#comment.modal.fade tabindex="-1" role="dialog"  aria-hidden="true"
 div.row
   - @tasks.each do |task|
