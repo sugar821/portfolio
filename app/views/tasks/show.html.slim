@@ -17,8 +17,11 @@ div.col-12
         td = @task.category.name
     tr        
         td.show-table  = t ".image"
-        td = @task.image.attached? ? (image_tag @task.image,class: "img") :(icon("fas","eye-slash"))
+        td = @task.image.attached? ? (image_tag @task.image,class: "img", size:"500x500") :(icon("fas","eye-slash"))
+-if @reviews.count != 0
+    h5.subtitle コメント
+    = render "reviews/reviews"
 = link_to "戻る", tasks_summary_path
-|　|　
+|　/　
 = link_to "編集", edit_task_path
   

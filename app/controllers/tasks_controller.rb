@@ -30,6 +30,7 @@ class TasksController < ApplicationController
   end
 
   def show
+    @reviews = Review.where task_id: params[:id]
   end
 
   def new
