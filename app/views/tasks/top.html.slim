@@ -20,6 +20,7 @@ div.row
           a.mr-3 = task.user.nick_name
           small = task.updated_day.strftime("%Y年%m月%d日")
         div.card-text
+          <hr>
           a.mr-3 = task.title
           <br>
           a.mr-3 = "#{task.minutes} 分"
@@ -32,4 +33,4 @@ div.row
             = link_to "削除", task, data: { confirm: '本当に削除しますか？' }, method: :delete if task&.user_id == current_user&.id
             = link_to "コメントする", new_task_review_path(task), remote: true, "data-toggle": "modal", "data-target": "#comment" if task&.user_id != current_user&.id
             <br>
-          = link_to "#{task&.likes_count} 件のコメントがあるよ！", task_reviews_path(task) if task.likes_count != nil
+          = link_to "#{task&.likes_count} 件のコメント", task_reviews_path(task) if task.likes_count != nil

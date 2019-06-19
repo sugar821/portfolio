@@ -8,6 +8,7 @@ div.col-12
                   a.a.mr-3 = image_tag src= "/no_image.png", size:"30x30", class:"avatar"
                 a.mr-3 = review.user.nick_name
                 small = review.created_at.strftime("%Y年%m月%d日")
+                <hr>
             div.card-text.ml-3
                 = simple_format review.comment
             div.text-right

@@ -2,8 +2,6 @@
       div.modal-content
         div.modal-header
           h5.modal-title = @task.title
-          button id= "close-btn" type="button" class="close" data-dismiss="modal" aria-label="閉じる"
-            span aria-hidden="true"&times;
         div
         div.modal-body
           = form_with model: @review do |f|
@@ -15,5 +13,5 @@
             
             .actions = f.submit nil , class: "form-control btn btn-outline-primary mt-2"
         div.modal-footer
-          button.btn.btn-secondary type="button" data-dismiss="modal" 閉じる
+          = link_to "閉じる", root_path
           
