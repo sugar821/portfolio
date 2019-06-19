@@ -3,7 +3,7 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   def top
-    @tasks = Task.all
+    @tasks = Task.order(id: "desc")
   end
   def summary
     @userid = current_user.id
@@ -90,6 +90,6 @@ class TasksController < ApplicationController
     end
 
     def task_params
-      params.require(:task).permit(:title, :minutes, :complete, :category_id, :image, :updated_day)
+      params.require(:task).permit(:title, :minutes, :complete, :category_id, :image, :new_image, :updated_day)
     end
 end

@@ -33,9 +33,9 @@
   </div>
   
   <div class="field">
-        <%= f.label :avatar %>
+        <%= f.label :new_avatar %>
         <br>
-        <%= f.file_field :avatar, class: "dropzone" %>
+        <%= f.file_field :new_avatar, class: "dropzone" %>
         <%= image_tag @user.avatar, size:"150x150", class:"avatar" if @user.avatar.attached? %>
         <%#= link_to "画像を削除する",delete_avatar_user_path, data: { confirm: '本当に画像を削除しますか？' }, method: :delete, class: "btn btn-outline-danger float-right mt-2" if @user.avatar.attached? %>
   </div>  

@@ -2,6 +2,7 @@ class Task < ApplicationRecord
     belongs_to :user
     belongs_to :category
     has_one_attached :image, dependent: :destroy
+    attribute :new_image
     has_many:reviews, dependent: :destroy
     validates :title, presence: true
     validates :minutes, presence: true
@@ -14,5 +15,9 @@ class Task < ApplicationRecord
     
     def start_time
         self.updated_day
+    end
+    
+    before_save do
+        self.image = new_image if new_image
     end
 end

@@ -11,7 +11,7 @@ div.row
       - @query.each do |task|
          tr
           td = task.category.name
-          td = task.minutes.to_i/60
+          td = "#{task.minutes.to_i/60}時間"
      hr
   div.col-xl-4
     h5.subtitle カレンダー

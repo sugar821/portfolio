@@ -13,6 +13,7 @@
        category: カテゴリー
        category_id: カテゴリー
        image: 画像
+       new_image: 画像
      edit:
        pagetitle: タスク編集
      search:

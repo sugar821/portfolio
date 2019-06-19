@@ -1,10 +1,22 @@
 ---
  ja:
-   registrations:
-     new:
-       title: テスト情報
-     edit:
-   sessions:
-     new:
-       email: メールアドレス
-       password: パスワード
+   devise:
+     registrations:
+       new:
+         title: テスト情報
+         avatar: プロフィール画像
+         new_avatar: プロフィール画像
+       edit:
+         avatar: プロフィール画像
+         new_avatar: プロフィール画像
+     sessions:
+       new:
+         email: メールアドレス
+         password: パスワード
+         avatar: プロフィール画像
+         new_avatar: プロフィール画像
+       edit:
+         email: メールアドレス
+         password: パスワード
+         avatar: プロフィール画像
+         new_avatar: プロフィール画像
