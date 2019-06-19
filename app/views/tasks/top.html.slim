@@ -2,10 +2,10 @@ div
 h1.title TOP
 <br>
 
-/div.modal.fade#comment tabindex="-1" role="dialog"  aria-hidden="true"
-/div#comment tabindex="-1" role="dialog"  aria-hidden="true"
+if @tasks.count == 0
+ = タスクが登録されていません。
+ = link_to "新しいタスクを登録してください。",new_task_path
 div#comment.modal.fade tabindex="-1" role="dialog"  aria-hidden="true"
-
 div.row
   - @tasks.each do |task|
     .div.col-sm-6.col-xl-4
