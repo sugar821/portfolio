@@ -2,6 +2,9 @@ class TasksController < ApplicationController
   before_action :authenticate_user!,except: [:top]
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
+  def top
+    @tasks = Task.all
+  end
   def summary
     @userid = current_user.id
     #日毎の集計
@@ -27,6 +30,7 @@ class TasksController < ApplicationController
   end
 
   def show
+    @reviews = Review.where task_id: params[:id]
   end
 
   def new
@@ -65,7 +69,7 @@ class TasksController < ApplicationController
   def destroy
     @task.destroy
     respond_to do |format|
-      format.html { redirect_to tasks_url, notice: '削除しました.' }
+      format.html { redirect_to root_path, notice: '削除しました.' }
       format.json { head :no_content }
     end
   end
@@ -86,6 +90,6 @@ class TasksController < ApplicationController
     end
 
     def task_params
-      params.require(:task).permit(:title, :hours, :minutes, :complete, :category_id, :image, :updated_day)
+      params.require(:task).permit(:title, :minutes, :complete, :category_id, :image, :updated_day)
     end
 end

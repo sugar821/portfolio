@@ -1,0 +1,17 @@
+  div.modal-dialog role="document"
+      div.modal-content
+        div.modal-header
+          h5.modal-title = @task.title
+        div
+        div.modal-body
+          = form_with model: @review do |f|
+            .field
+            = f.hidden_field :task_id, value:@task.id, class: "form-control"
+            .field
+            = f.label :comment
+            = f.text_area :comment, rows:"4", class: "form-control",placeholder: "コメントを入力してください", autofocus: true
+            
+            .actions = f.submit nil , class: "form-control btn btn-outline-primary mt-2"
+        div.modal-footer
+          = link_to "閉じる", root_path
+          

@@ -1,7 +1,8 @@
 class Task < ApplicationRecord
     belongs_to :user
     belongs_to :category
-    has_one_attached :image
+    has_one_attached :image, dependent: :destroy
+    has_many:reviews, dependent: :destroy
     validates :title, presence: true
     validates :minutes, presence: true
     validate :minutes_check

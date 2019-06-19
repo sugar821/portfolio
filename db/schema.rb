@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_18_082134) do
+ActiveRecord::Schema.define(version: 2019_06_17_044842) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -39,16 +39,27 @@ ActiveRecord::Schema.define(version: 2019_04_18_082134) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.text "comment", null: false
+    t.boolean "good"
+    t.integer "task_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["task_id"], name: "index_reviews_on_task_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
   create_table "tasks", force: :cascade do |t|
     t.string "title", null: false
-    t.boolean "complete", default: false, null: false
+    t.boolean "complete", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.integer "category_id"
-    t.integer "hours", default: 1, null: false
     t.date "updated_day"
     t.integer "minutes"
+    t.integer "likes_count"
     t.index ["category_id"], name: "index_tasks_on_category_id"
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
