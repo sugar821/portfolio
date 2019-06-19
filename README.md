@@ -57,3 +57,4 @@
     デプロイ：heroku
     エディタ：windows10 + AWS cloud9 or MAC + VScode
     制作時間：約200時間(1日5h×40日)
+
