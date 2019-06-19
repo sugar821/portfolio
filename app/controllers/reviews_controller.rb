@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-    before_action :set_task, only:[:new]
+    before_action :set_task, only:[:index,:new]
     before_action :set_review, only:[:edit, :update, :destroy]
 
     def index
@@ -27,7 +27,7 @@ class ReviewsController < ApplicationController
     def update
     respond_to do |format|
       if @review.update(review_params)
-        format.html { redirect_to task_reviews_path(@review.task), notice: '更新しました' }
+        format.html { redirect_to root_path, notice: '更新しました' }
         format.json { render :show, status: :ok, location: @task }
       else
         format.html { render :edit }
@@ -39,7 +39,7 @@ class ReviewsController < ApplicationController
     def destroy
     @review.destroy
     respond_to do |format|
-      format.html { redirect_to task_reviews_path(@review.task), notice: '削除しました.' }
+      format.html { redirect_to root_path, notice: '削除しました.' }
       format.json { head :no_content }
     end
     end
