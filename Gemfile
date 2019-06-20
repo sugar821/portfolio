@@ -68,6 +68,7 @@ gem 'rails_12factor', group: :production
 
 gem 'selenium-webdriver'
 gem 'webdrivers'
+gem "aws-sdk-s3", require: false
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console'
