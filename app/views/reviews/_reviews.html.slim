@@ -3,9 +3,9 @@ div.col-12
         div.card.p-2.my-2
             div.card-title
                 - if review.user.avatar.attached?
-                  a.a.mr-3 = image_tag review.user.avatar, size:"30x30", class:"avatar"
+                  a.mr-3 = image_tag review.user.avatar, size:"30x30", class:"avatar"
                 - else
-                  a.a.mr-3 = image_tag src= "/no_image.png", size:"30x30", class:"avatar"
+                  a.mr-3 = image_tag src= "/no_image.png", size:"30x30", class:"avatar"
                 a.mr-3 = review.user.nick_name
                 small = review.created_at.strftime("%Y年%m月%d日")
                 <hr>
