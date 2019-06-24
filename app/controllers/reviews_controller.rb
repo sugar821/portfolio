@@ -18,10 +18,12 @@ class ReviewsController < ApplicationController
         logger.debug params
         @review = Review.new(review_params)
         @review.user_id = current_user.id
-        if @review.save!
-          redirect_to root_path
-        else
-          head :no_content
+        respond_to do |format|
+            if @review.save
+              format.html { redirect_to root_path, notice: '登録しました' }
+            else
+            　format.js { render :new } 
+            end
         end
     end
     

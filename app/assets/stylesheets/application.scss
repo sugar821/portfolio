@@ -13,31 +13,43 @@
     display: inline-block;
     margin: 1rem 0;
     background: linear-gradient(transparent 70%, #a7d6ff 70%);
+    font-family: Quicksand, 游ゴシック体, "Yu Gothic", YuGothic, "ヒラギノ角ゴシック Pro", "Hiragino Kaku Gothic Pro", メイリオ, sans-serif;
 }
 
 .subtitle{
     display: inline-block;
     margin: 1rem 0;
     background: linear-gradient(transparent 70%, #98D1AF 70%);
+    font-family: Quicksand, 游ゴシック体, "Yu Gothic", YuGothic, "ヒラギノ角ゴシック Pro", "Hiragino Kaku Gothic Pro", メイリオ, sans-serif;
 }
 
 .admin-title{
     display: inline-block;
     margin: 1rem 0;
     background: linear-gradient(transparent 70%, crimson 40%);
+    font-family: Quicksand, 游ゴシック体, "Yu Gothic", YuGothic, "ヒラギノ角ゴシック Pro", "Hiragino Kaku Gothic Pro", メイリオ, sans-serif;
 }
+
+.card_style{
+    background:#eff7ff;
+    padding: 0.5rem;
+}
+
 .avatar{
     border-radius: 50%;
 }
+
 .img{
     display: block;
     max-width: 100%;
     height: auto;
+    transition-duration: 0.5s;
 }
 
 .img:hover{
-    opacity: 0.5;
     cursor: pointer;
+    transform: scale(1.8,1.8);
+    z-index: 3;
 }
 
 .nav-btn:hover {

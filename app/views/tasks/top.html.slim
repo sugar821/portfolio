@@ -9,12 +9,12 @@ div#comment.modal.fade tabindex="-1" role="dialog"  aria-hidden="true"
 div.row
   - @tasks.each do |task|
     .div.col-sm-6.col-xl-4
-      div.mt-2.card.p-2
+      div.mt-2.card.card_style
         - if task.image.attached?
           = image_tag task.image, size:"100x100", class:"img card-img-top mb-2"
         div.card-title
           - if task.user.avatar.attached?
-              a.mr-3 = image_tag task.user.avatar, size:"30x30", class:"avatar"
+              a.mr-3#luminous = image_tag task.user.avatar, size:"30x30", class:"avatar"
           - else
               a.mr-3 = image_tag src= "/no_image.png", size:"30x30", class:"avatar"
           a.mr-3 = task.user.nick_name
