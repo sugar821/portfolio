@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+    #バリデーションテスト
     it "is valid with a nick name, email, and password" do 
         user = FactoryBot.build(:user)
         expect(user).to be_valid
