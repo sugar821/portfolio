@@ -62,5 +62,3 @@
     テスト：Rspec
     デプロイ：heroku
     エディタ：windows10 + AWS cloud9 or MAC + VScode
-    制作時間：約300時間(1日5h×60日)
-
